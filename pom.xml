@@ -7,35 +7,45 @@
   
   
   <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
+
+		<sonar.organization>fssa-batch3</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
+	
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.9.1</version>
-			<scope>test</scope>
-		</dependency>
-
-
-		<!-- My SQL Connector -->
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version>
+			<version>8.0.26</version>
 		</dependency>
 
+		<!-- JUnit Jupiter API for writing tests -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.7.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- JUnit Jupiter Engine for running tests -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.7.0</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
+
+
 	<build>
-		<pluginManagement>
-			<!-- lock down plugins versions to avoid using Maven defaults (may
-			be moved to parent pom) -->
+
+		<pluginManagement><!-- lock down plugins versions to avoid using Maven
+			defaults (may be moved to parent pom) -->
 			<plugins>
 				<!-- clean lifecycle, see
 				https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -79,9 +89,38 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>3.1.0</version>
+					<configuration>
+						<mainClass>com.fssa.learnJava.project.taskapp.App</mainClass>
+					</configuration>
+				</plugin>
 
+				<plugin>
+				    <groupId>org.jacoco</groupId>
+				    <artifactId>jacoco-maven-plugin</artifactId>
+				    <version>0.8.8</version>
+				    <executions>
+				        <execution>
+				            <goals>
+				                <goal>prepare-agent</goal>
+				            </goals>
+				        </execution>
+				        <execution>
+				            <id>report</id>
+				            <phase>prepare-package</phase>
+				            <goals>
+				                <goal>report</goal>
+				            </goals>
+				        </execution>
+				    </executions>
+				</plugin>
+				
 			</plugins>
 		</pluginManagement>
+
 	</build>
   
 </project>
