@@ -75,7 +75,7 @@ public class StoreValidator {
 		/*
 		 *  Image URL Regex Pattern Validate Code
 		 */
-		boolean isMatch = Pattern.matches("(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg|wedp))", url);
+		boolean isMatch = Pattern.matches("(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg|webp))", url);
 
 		/*
 		 *  If the patter is not Matched it will throw the Exception Otherwise it's True.

@@ -14,10 +14,9 @@ public class TestProductDao {
 
 		Product p1 = new Product();
 		p1.setProductId(15);
-		p1.setProductTitle("Test Product Dao");
-		p1.setProductPrice(8999);
-		p1.setProductImage(
-				"https://user-images.githubusercontent.com/116251925/226127453-f9fed506-9089-4786-b041-4bd5713c3d88.png");
+		p1.setProductTitle("IQOO Z6 44W (Lumina Blue, 128 GB) (8 GB RAM)");
+		p1.setProductPrice(29999);
+		p1.setProductImage("https://iili.io/HUMtFun.webp");
 		p1.setStoreId(3);
 
 		return p1;
