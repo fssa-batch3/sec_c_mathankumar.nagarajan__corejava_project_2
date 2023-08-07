@@ -8,7 +8,10 @@ import io.github.cdimascio.dotenv.Dotenv;
 //import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
-
+public static void main(String[] args) {
+	getConnection();
+	System.out.println("working");
+}
 	   public static Connection getConnection() {
 	        Connection con = null;
 
@@ -35,9 +38,5 @@ public class ConnectionUtil {
 	        }
 	        return con;
 	    }
-	   
-	   public static void main(String[] args) {
-		getConnection();
-	}
 
 }
