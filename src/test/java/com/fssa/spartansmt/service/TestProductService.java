@@ -21,6 +21,7 @@ public class TestProductService {
 		return p1;
 
 	}
+	
 
 	@Test
 	public void testValidAddProduct() throws InvalidProductDetailsException, DAOException {
