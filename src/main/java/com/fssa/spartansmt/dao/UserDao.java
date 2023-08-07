@@ -10,20 +10,29 @@ import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.model.User;
+import com.fssa.spartansmt.util.ConnectionUtil;
 
-// TODO - WRITE COMMENTS
+/*
+ * @author MathankumarNagarajan
+ */
 
 public class UserDao {
 
 	public boolean addUser(User user) throws DAOException {
 
-		// Get Connection form Connection Util
+		/*
+		 *  Get Connection form Connection Util
+		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			// Declaring Query as a String and Using final Keyword
+			/*
+			 *  Declaring Query as a String and Using final Keyword
+			 */
 			final String query = "INSERT INTO user(first_name, last_name, email, phone_number, password) values ( ?, ?, ?, ?, ? )";
 
-			// Created Prepared Statement And It'll Execute Query
+			/*
+			 *  Created Prepared Statement And It'll Execute Query
+			 */
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setString(1, user.getFirstName());
@@ -47,12 +56,17 @@ public class UserDao {
 
 	public boolean updateUser(User user) throws DAOException, InvalidUserException {
 
-		// Validating Store ID
+		/*
+		 *  Validating Store ID if the user id is Zero or Less then Zero it will throw 
+		 *  the Exception Otherwise next step codes will execute.
+		 */
 		if (user.getUserId() <= 0) {
 			throw new InvalidUserException(ProductValidatorErrors.INVALID_PRODUCT_ID);
 		}
 
-		// Get connection from connection util
+		/*
+		 *  Get connection from connection util
+		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
 			final String query = "UPDATE user SET first_name = ?, last_name = ?, phone_number = ?, password = ? WHERE user_id = ?";
@@ -79,20 +93,30 @@ public class UserDao {
 
 	public boolean getAllUserDetails() throws DAOException {
 
-		// Get Connection From Connection Util
+		/*
+		 *  Get Connection From Connection Util
+		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			// Get All Store Details from Database. Declared Query as a String and Declared
-			// final keyword.
+			/*
+			 *  Get All Store Details from Database. Declared Query as a String and Declared
+			 *  final keyword.
+			 */
 			final String query = "select * from user";
 
-			// Connection Util Class CreateStatement Method Assigned by Statement Interface
+			/*
+			 *  Connection Util Class CreateStatement Method Assigned by Statement Interface
+			 */
 			try (Statement st = con.createStatement()) {
 
-				// Created ResultSet And Executing SQL Query
+				/*
+				 *  Created ResultSet And Executing SQL Query
+				 */
 				try (ResultSet rs = st.executeQuery(query)) {
 
-					// Get All Store Details using ResultSet and Printing Store Details One by One.
+					/*
+					 *  Get All Store Details using ResultSet and Printing Store Details One by One.
+					 */
 					while (rs.next()) {
 
 						System.out.println("User ID: " + rs.getInt("user_id") + ", First Name: "

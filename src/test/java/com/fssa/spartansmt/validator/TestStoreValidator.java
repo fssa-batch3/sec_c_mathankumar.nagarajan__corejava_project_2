@@ -86,6 +86,7 @@ public class TestStoreValidator {
 	public void testValidateEmptyStoreName() {
 		
 		Store store = new Store();
+		store.setId(1);
 		store.setName("");
 		store.setCategory("Shoes Shop");
 		store.setStoreLogoLink("https://iili.io/HWXkdkx.png");
@@ -117,6 +118,13 @@ public class TestStoreValidator {
 		}
 	}
 
+	@Test
+	public void testValidateStoreId() throws InvalidStoreDetailsException {
+		StoreValidator storeValidator = new StoreValidator();
+		Store store = new Store();
+		store.setId(1);
+		Assertions.assertTrue(storeValidator.validateId(store.getId()));
+	}
 	
 
 

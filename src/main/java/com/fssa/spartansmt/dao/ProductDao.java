@@ -10,21 +10,32 @@ import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.model.Product;
+import com.fssa.spartansmt.util.ConnectionUtil;
 
-// TODO - WRITE COMMENTES
+/*
+ * @author MathankumarNagarajan
+ */
 
 public class ProductDao {
 
-	// Add Product Details to the Database Table through the Add Product Method
+	/*
+	 *  Add Product Details to the Database Table through the Add Product Method
+	 */
 	public static boolean addProduct(Product product) throws DAOException {
 
-		// Get Connection form Connection Util
+		/*
+		 *  Get Connection form Connection Util
+		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			// Declaring Query as a String and Using final Keyword
+			/*
+			 *  Declaring Query as a String and Using final Keyword
+			 */
 			final String query = "INSERT INTO products(product_title, product_price, product_image, store_id) values (?,?,?,?)";
 
-			// Created Prepared Statement And It'll Execute Query
+			/*
+			 *  Created Prepared Statement And It'll Execute Query
+			 */
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setString(1, product.getProductTitle());
@@ -45,17 +56,26 @@ public class ProductDao {
 
 	}
 
-	// Update Product Details to tbe Database Table Through the UpdateProduct Method
+	/*
+	 *  Update Product Details to tbe Database Table Through the UpdateProduct Method
+	 */
 	public static boolean updateProduct(Product product) throws DAOException, InvalidProductDetailsException {
 
-		// Validating Store ID
+		/*
+		 * Validating Store ID
+		 */
 		if (product.getProductId() <= 0) {
 			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_ID);
 		}
 
-		// Get connection from connection util
+		/*
+		 *  Get connection from connection util
+		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
+			/*
+			 * Declaring a Query as a String and it also a constant value.
+			 */
 			final String query = "UPDATE products SET product_title = ?, product_price = ?, product_image = ? WHERE product_id = ?";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
@@ -79,17 +99,27 @@ public class ProductDao {
 
 	public static boolean deleteProduct(int productId) throws DAOException, InvalidProductDetailsException {
 
+		/*
+		 * Validating the Product Id if the product id is Zero or Less Zero
+		 * It will throw the Exception. Otherwise next Steps will run.
+		 */
 		if (productId <= 0) {
 			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_ID);
 		}
 
-		// Get Connection From Connection Util
+		/*
+		 *  Get Connection From Connection Util
+		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			// Declaring Delete Store Details Query as a String and declared as a final key
+			/*
+			 *  Declaring Delete Store Details Query as a String and declared as a final key
+			 */
 			final String query = "DELETE FROM products WHERE product_id = ?";
 
-			// Created Prepared Statement and Executing Query
+			/*
+			 *  Created Prepared Statement and Executing Query
+			 */
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setInt(1, productId);
@@ -101,7 +131,9 @@ public class ProductDao {
 			throw new DAOException("Error For Deleting Product Details");
 		}
 
-		// Print Statement
+		/*
+		 *  Print Statement
+		 */
 		System.out.println("Deleted Successfully");
 
 		return true;
@@ -110,25 +142,36 @@ public class ProductDao {
 
 	public boolean getAllProductDetails() throws DAOException {
 
-		// Get Connection From Connection Util
+		/*
+		 *  Get Connection From Connection Util
+		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			// Get All Store Details from Database. Declared Query as a String and Declared
-			// final keyword.
+			/*
+			 *  Get All Store Details from Database. Declared Query as a String and Declared
+			 *  final keyword.
+			 */
 			final String query = "select * from products";
 
-			// Connection Util Class CreateStatement Method Assigned by Statement Interface
+			/*
+			 *  Connection Util Class CreateStatement Method Assigned by Statement Interface
+			 */
 			try (Statement st = con.createStatement()) {
 
-				// Created ResultSet And Executing SQL Query
+				/*
+				 *  Created ResultSet And Executing SQL Query
+				 */
 				try (ResultSet rs = st.executeQuery(query)) {
 
-					// Get All Store Details using ResultSet and Printing Store Details One by One.
+					/*
+					 *  Get All Store Details using ResultSet and Printing Store Details One by One.
+					 */
 					while (rs.next()) {
 
 						System.out.println("Product ID: " + rs.getInt("product_id") + ", Product Name: "
-								+ rs.getString("product_title") + ", Product Price: " + rs.getDouble("product_price") + ", Product Image URL: " + rs.getString("product_image")
-								+ ", Store ID: " + rs.getInt("store_id"));
+								+ rs.getString("product_title") + ", Product Price: " + rs.getDouble("product_price")
+								+ ", Product Image URL: " + rs.getString("product_image") + ", Store ID: "
+								+ rs.getInt("store_id"));
 
 					}
 
@@ -143,6 +186,5 @@ public class ProductDao {
 		return true;
 
 	}
-
 
 }

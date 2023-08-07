@@ -34,7 +34,10 @@ public class StoreService {
 
 	}
 
-	// Get All Store Details Method Directly it Call the StoreDao Because It Should not have any Parameter to Validate.
+	/*
+	 *  Get All Store Details Method Directly it Call the StoreDao.
+	 *  Because It Should not have any Parameter to Validate.
+	 */
 	public static boolean getAllStoreDetails() throws DAOException {
 
 		StoreDao.getAllStoreDetails();
@@ -57,34 +60,5 @@ public class StoreService {
 		return true;
 
 	}
-
-//	public static void main(String[] args) throws Exception {
-		
-		// Add Store Details
-//		Store store = new Store("Bata", "Specse Shop", "https://iili.io/HWXkKhB.jpg");		
-//		StoreService ss = new StoreService();
-//		ss.addStore(store);
-		
-		// Update Store Details
-//		Store st1 = new Store();
-//		st1.setName("Chales & Keith");
-//		st1.setCategory("Bags & Luggage");
-//		st1.setStoreLogoLink("https://iili.io/HWXep1e.png");
-//		st1.setId(4);
-//		StoreService ss = new StoreService();
-//		ss.updateStore(st1);
-		
-		// Delete Store Details 
-//		StoreService ss = new StoreService();
-//		ss.deleteStore(10);
-		
-		// Get All Store Details
-//		StoreService ss = new StoreService();
-//		ss.getAllStoreDetails();
-		
-		
-		
-		
-//	}
 
 }

@@ -1,5 +1,9 @@
 package com.fssa.spartansmt.model;
 
+/*
+ * @author MathankumarNagarajan
+ */
+
 public class User {
 
 	private int userId;

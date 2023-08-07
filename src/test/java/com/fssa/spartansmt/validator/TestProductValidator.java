@@ -9,24 +9,39 @@ import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.model.Product;
 
 public class TestProductValidator {
+	
+	// Valid Product Object
+	public static Product validProduct() {
+		Product product = new Product();
+		product.setProductTitle("Mens Air Zoom Vomero 15 Running Shoe");
+		product.setProductPrice(1999);
+		product.setProductImage("https://iili.io/HWXep1e.png");
+		product.setStoreId(1);
+		product.setProductId(1);
+		return product;
+	}
+	
+	// Invalid Product Object
+	public static Product invalidProduct() {
+		
+		Product invalidProduct = new Product(null, 500, null, 0);
+		return invalidProduct;
+
+	}
 
 
 	@Test
 	public void testProductValidate() throws InvalidProductDetailsException {
-		Product p2 = new Product();
-		p2.setProductTitle("Mens Air Zoom Vomero 15 Running Shoe");
-		p2.setProductPrice(1999);
-		p2.setProductImage("https://iili.io/HWXep1e.png");
-		p2.setStoreId(1);
-		
-		Assertions.assertTrue(ProductValidator.validate(p2));
+
+		Assertions.assertTrue(ProductValidator.validate(validProduct()));
+	
 	}
 
 	@Test
 	public void testInvalidProduct() {
 		
 		try {
-			
+
 			Product p1 = null;
 			ProductValidator.validate(p1);
 			Assertions.fail("Test Invalid Product Methos Is Failded");
@@ -43,8 +58,7 @@ public class TestProductValidator {
 	public void testInvalidProductTitle() {
 		
 		try {
-			Product p2 = new Product(null, 1999, "https://iili.io/HWXep1e.png", 1);
-			ProductValidator.validate(p2);
+			ProductValidator.validateProductTitle(invalidProduct().getProductTitle());
 			Assertions.fail("Test Invalid Product Title Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
 			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_TITLE, ex.getMessage());
@@ -56,8 +70,7 @@ public class TestProductValidator {
 	public void testInvalidProductPrice() {
 		
 		try {
-			Product p2 = new Product("Mens Air Zoom Vomero 15 Running Shoe", 500, "https://iili.io/HWXep1e.png", 1);
-			ProductValidator.validate(p2);
+			ProductValidator.validateProductPrice(invalidProduct().getProductPrice());
 			Assertions.fail("Test Invalid Product Price Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
 			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_PRICE, ex.getMessage());
@@ -69,8 +82,7 @@ public class TestProductValidator {
 	public void testInvalidProductImageURL() {
 		
 		try {
-			Product p2 = new Product("Mens Air Zoom Vomero 15 Running Shoe", 1000, null, 1);
-			ProductValidator.validate(p2);
+			ProductValidator.validateProductImageLink(invalidProduct().getProductImage());
 			Assertions.fail("Test Invalid Product Image URL Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
 			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_IMAGE_LOGO_URL, ex.getMessage());
@@ -82,8 +94,7 @@ public class TestProductValidator {
 	public void testInvalidProductStoreId() {
 		
 		try {
-			Product p2 = new Product("Mens Air Zoom Vomero 15 Running Shoe", 1000, "https://iili.io/HWXep1e.png", -1);
-			ProductValidator.validate(p2);
+			ProductValidator.validateStoreId(invalidProduct().getStoreId());
 			Assertions.fail("Test Invalid Product Store Id Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
 			Assertions.assertEquals(StoreValidatorErrors.INVALID_STORE_ID, ex.getMessage());
@@ -96,8 +107,8 @@ public class TestProductValidator {
 	public void testInvalidProductURL() {
 		
 		try {
-			Product p2 = new Product("Mens Air Zoom Vomero 15 Running Shoe", 1000, "https://iili.io/HWXep1e", 1);
-			ProductValidator.validate(p2);
+			String invalidProductUrl = "https://iili.io/HWXep1e";
+			ProductValidator.validateProductImageLink(invalidProductUrl);
 			Assertions.fail("Test Invalid Product Image URL Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
 			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_IMAGE_LOGO_URL, ex.getMessage());
@@ -108,21 +119,21 @@ public class TestProductValidator {
 	@Test 
 	public void testValidProductId() throws InvalidProductDetailsException {
 		ProductValidator pv = new ProductValidator();
-		Product p3 = new Product();
-		p3.setProductId(1);
-		Assertions.assertTrue(pv.validateProductId(p3.getProductId()));
+		Assertions.assertTrue(pv.validateProductId(validProduct().getProductId()));
 	}
 	
 	@Test
 	public void testInvalidProductId() {
 		try {
+			int invalidProductId = -1;
 			ProductValidator pv = new ProductValidator();
-			pv.validateProductId(-1);
+			pv.validateProductId(invalidProductId);
 			Assertions.fail("Test Invalid Product Id Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
 			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ID, ex.getMessage());
 		}
 	}
+	
 	
 	// Empty Space Validations
 	

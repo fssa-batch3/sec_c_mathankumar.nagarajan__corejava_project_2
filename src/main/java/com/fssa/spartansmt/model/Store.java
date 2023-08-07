@@ -1,7 +1,8 @@
 package com.fssa.spartansmt.model;
 
 /*
- * Model object for representing student in the application
+ * @author MathankumarNagarajan
+ * Model object for representing Store in the application
  * */
 
 public class Store {
@@ -46,5 +47,12 @@ public class Store {
 	public Store() {
 		
 	}
+	@Override
+	public String toString() {
+		return "Store [id=" + id + ", name=" + name + ", category=" + category + ", storeLogoLink=" + storeLogoLink
+				+ "]";
+	}
+	
+	
 	
 }
