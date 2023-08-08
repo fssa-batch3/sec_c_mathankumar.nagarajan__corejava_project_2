@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.fssa.spartansmt.constants.UserConstants;
 import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
@@ -60,7 +61,7 @@ public class UserDao {
 		 *  Validating Store ID if the user id is Zero or Less then Zero it will throw 
 		 *  the Exception Otherwise next step codes will execute.
 		 */
-		if (user.getUserId() <= 0) {
+		if (user.getUserId() <= UserConstants.INVALID_USER_ID) {
 			throw new InvalidUserException(ProductValidatorErrors.INVALID_PRODUCT_ID);
 		}
 

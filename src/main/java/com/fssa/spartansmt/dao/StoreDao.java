@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.fssa.spartansmt.constants.StoreConstants;
 import com.fssa.spartansmt.errors.StoreValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
@@ -61,7 +62,7 @@ public class StoreDao {
 		/*
 		 *  Validating Store ID 
 		 */
-		if(store.getId() <= 0) {
+		if(store.getId() <= StoreConstants.INVALID_MAXIMUM_STORE_ID) {
 			throw new InvalidStoreDetailsException(StoreValidatorErrors.INVALID_STORE_ID);
 		}
 		
@@ -108,7 +109,7 @@ public class StoreDao {
 		/*
 		 *  Validate Store ID it must have more then "ZERO".
 		 */
-		if(storeId <= 0) {
+		if(storeId <= StoreConstants.INVALID_MAXIMUM_STORE_ID) {
 			throw new InvalidStoreDetailsException(StoreValidatorErrors.INVALID_STORE_ID);
 		}
 		

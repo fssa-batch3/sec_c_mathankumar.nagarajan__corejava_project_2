@@ -2,9 +2,11 @@ package com.fssa.spartansmt.validator;
 
 import java.util.regex.Pattern;
 
+import com.fssa.spartansmt.constants.StoreConstants;
 import com.fssa.spartansmt.errors.StoreValidatorErrors;
 import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
 import com.fssa.spartansmt.model.Store;
+import com.fssa.spartansmt.regexpattern.StoreRegexPatterns;
 
 public class StoreValidator {
 
@@ -75,7 +77,7 @@ public class StoreValidator {
 		/*
 		 *  Image URL Regex Pattern Validate Code
 		 */
-		boolean isMatch = Pattern.matches("(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|svg|webp))", url);
+		boolean isMatch = Pattern.matches(StoreRegexPatterns.IMAGE_REGEX, url);
 
 		/*
 		 *  If the patter is not Matched it will throw the Exception Otherwise it's True.
@@ -89,22 +91,19 @@ public class StoreValidator {
 	}
 
 	public boolean validateId(int storeId) throws InvalidStoreDetailsException {
-		
-		/*
-		 *  Assigning invalid store Id as a number
-		 */
-		int invalidId = 0;
 
 		/*
 		 *  Store ID validator If the Must have more the Zero it will return true
 		 *  otherwise it'll throw Exception.
 		 */
-		if (storeId <= invalidId) {
+		if (storeId <= StoreConstants.INVALID_MAXIMUM_STORE_ID) {
 			throw new InvalidStoreDetailsException(StoreValidatorErrors.INVALID_STORE_ID);
 		}
 
 		return true;
 
 	}
+	
+	
 
 }

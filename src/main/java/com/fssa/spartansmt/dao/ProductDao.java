@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.fssa.spartansmt.constants.ProductConstants;
 import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
@@ -64,7 +65,7 @@ public class ProductDao {
 		/*
 		 * Validating Store ID
 		 */
-		if (product.getProductId() <= 0) {
+		if (product.getProductId() <= ProductConstants.INVALID_PRODUCT_ID) {
 			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_ID);
 		}
 
@@ -103,7 +104,7 @@ public class ProductDao {
 		 * Validating the Product Id if the product id is Zero or Less Zero
 		 * It will throw the Exception. Otherwise next Steps will run.
 		 */
-		if (productId <= 0) {
+		if (productId <= ProductConstants.INVALID_PRODUCT_ID) {
 			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_ID);
 		}
 

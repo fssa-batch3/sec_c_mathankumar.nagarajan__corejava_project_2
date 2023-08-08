@@ -2,9 +2,11 @@ package com.fssa.spartansmt.validator;
 
 import java.util.regex.Pattern;
 
+import com.fssa.spartansmt.constants.UserConstants;
 import com.fssa.spartansmt.errors.UserValidatorErrors;
 import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.model.User;
+import com.fssa.spartansmt.regexpattern.UserRegexPattern;
 
 /*
  * @author MathankumarNagarajan
@@ -105,19 +107,14 @@ public class UserValidator {
 		 * If the String is null or Empty it will throw the Exception.
 		 * Otherwise It will Check Next Conditions.
 		 */
-		if(email == null || "".equals(email)) {
+		if(email == null || "".equals(email.trim())) {
 			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_EMAIL);
 		}
-		
-		/*
-		 *  Regex Pattern to check the Email Address is valid or invalid
-		 */
-		String regex = "^[a-z0-9][a-zA-Z0-9._%+-]*@[a-z0-9.-]+\\.[a-z]{2,}$";
-		
+
 		/*
 		 *  Here It will Match the regex Pattern and User Given Email Address
 		 */
-		boolean isMatch = Pattern.matches(regex, email);
+		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_EMAIL, email);
 		
 		/*
 		 *  The Matches returned false below Exception Will throw.
@@ -138,30 +135,20 @@ public class UserValidator {
 	public boolean validatePhoneNumber(String phoneNumber) throws InvalidUserException {
 		
 		/*
-		 *  Assigned the mobile number length as a integer. 
-		 */
-		int phoneNoLength = 10;
-		
-		/*
 		 * This the receive a mobile number as a String.
 		 * If the Mobile Number is Null, Empty or 
 		 * the Mobile Number minimum have 10 digit number it should not have.
 		 * It will throw the Exception. Otherwise it will check next Conditions.
 		 */
-		if( phoneNumber == null || "".equals(phoneNumber.trim()) || phoneNumber.length() < phoneNoLength ) {
+		if( phoneNumber == null || "".equals(phoneNumber.trim()) || phoneNumber.length() < UserConstants.MIN_LENGTH ) {
 			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_PHONE_NUMBER);
 		}
-		
-		/*
-		 *  Regex Pattern to check the Mobile Number is Valid or Invalid
-		 */
-		String regex = "[6789][0-9]{9}";
 		
 		/*
 		 * The Matches returned false below Exception will throw.
 		 * Otherwise this Method will return true.
 		 */
-		boolean isMatch = Pattern.matches(regex, phoneNumber);
+		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_MOBILE_NUM, phoneNumber);
 		
 		if(!isMatch) {
 			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_PHONE_NUMBER);
@@ -187,15 +174,10 @@ public class UserValidator {
 		}
 		
 		/*
-		 *  Regex Pattern to validate the password structures.
-		 */
-		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$";
-		
-		/*
 		 * The Matches returned False below Exception will throw.
 		 * Otherwise this Method will return true.
 		 */
-		boolean isMatch = Pattern.matches(regex, password);
+		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_PASSWORD, password);
 		
 		if(!isMatch) {
 			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_PASSWORD);
@@ -208,15 +190,10 @@ public class UserValidator {
 	public boolean validateId(int id) throws InvalidUserException {
 		
 		/*
-		 *  Assigned the Maximum invalid id
-		 */
-		int userId = 0;
-		
-		/*
 		 * If the User ID have zero or Less then zero The Exception
 		 * will throw. Otherwise It will true.
 		 */
-		if(id <= userId) {
+		if(id <= UserConstants.INVALID_USER_ID) {
 			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_ID);
 		}
 		

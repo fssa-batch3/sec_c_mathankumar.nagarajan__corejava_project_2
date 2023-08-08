@@ -1,10 +1,14 @@
 package com.fssa.spartansmt.validator;
 
 import java.util.regex.Pattern;
+
+import com.fssa.spartansmt.constants.ProductConstants;
+import com.fssa.spartansmt.constants.StoreConstants;
 import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.errors.StoreValidatorErrors;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.model.Product;
+import com.fssa.spartansmt.regexpattern.ProductRegexPatterns;
 
 /*
  * @author MathankumarNagarajan
@@ -66,15 +70,10 @@ public class ProductValidator {
 	public static boolean validateProductPrice(double price) throws InvalidProductDetailsException {
 
 		/*
-		 *  Assigning the product minimum price
-		 */
-		int minPrice = 900;
-
-		/*
 		 * Product Price Validation If the Product Price is less then 900 It will throw
 		 * the Exception.
 		 */
-		if (price < minPrice) {
+		if (price < ProductConstants.MINIMUM_PRICE_PRODUCT) {
 			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_PRICE);
 		}
 
@@ -96,7 +95,7 @@ public class ProductValidator {
 		/*
 		 *  Image URL Regex Pattern Validate Code
 		 */
-		boolean isMatch = Pattern.matches("(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg|webp))", url);
+		boolean isMatch = Pattern.matches(ProductRegexPatterns.IMAGE_REGEX, url);
 
 		/*
 		 *  If the patter is not Matched it will throw the Exception Otherwise it's True.
@@ -112,15 +111,10 @@ public class ProductValidator {
 	public static boolean validateStoreId(int storeId) throws InvalidProductDetailsException {
 		
 		/*
-		 *  Assigning a invalid Store ID
-		 */
-		int invalidId = 0;
-		
-		/*
 		 * If the Store Id is Must have more then then ZERO. If Store Id Have More then
 		 * Zero it will return true. OtherWise it throw Exception.
 		 */
-		if (storeId <= invalidId) {
+		if (storeId <= StoreConstants.INVALID_MAXIMUM_STORE_ID) {
 			throw new InvalidProductDetailsException(StoreValidatorErrors.INVALID_STORE_ID);
 		}
 		
@@ -134,15 +128,10 @@ public class ProductValidator {
 	public boolean validateProductId(int productId) throws InvalidProductDetailsException {
 
 		/*
-		 *  Assigning a invalid product Id
-		 */
-		int invalidId = 0;
-		
-		/*
 		 *  If the product Id is ZERO or less then Zero it will throw the Exception.
 		 *  Otherwise it'll return true.
 		 */
-		if (productId <= invalidId) {
+		if (productId <= ProductConstants.INVALID_PRODUCT_ID) {
 			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_ID);
 		}
 
