@@ -11,7 +11,7 @@ public class TestStoreValidator {
 	
 	@Test
 	public void testValidateStore() throws InvalidStoreDetailsException {
-		Store store = new Store("Nike", "Shoes Shop", "https://iili.io/HWXkdkx.png");
+		Store store = new Store("Nike", "Shoes Shop", "https://iili.io/HkeiZmb.webp");
 		Assertions.assertTrue(StoreValidator.validate(store));
 	}
 	

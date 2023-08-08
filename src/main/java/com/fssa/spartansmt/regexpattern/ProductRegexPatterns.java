@@ -5,6 +5,6 @@ public interface ProductRegexPatterns {
 	/*
 	 * IMAGE REGEX Pattern Use to validate the Image URL.
 	 */
-	String IMAGE_REGEX = "(http)?s?:?(\\\\/\\\\/[^\\\"']*\\\\.(?:png|jpg|jpeg|gif|png|svg|webp))";
+	String IMAGE_REGEX = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg|webp))";
 
 }
