@@ -6,6 +6,6 @@ public interface UserRegexPattern {
 	
 	String REGEX_MOBILE_NUM = "[6789][0-9]{9}";
 	
-	String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$";
+	String REGEX_PASS_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$";
 
 }

@@ -3,7 +3,7 @@ package com.fssa.spartansmt.constants;
 public interface UserConstants {
 
 	/*
-	 * Mobile number should have minimum Length of 10;
+	 * Mobile number should have minimum Length of 10.
 	 */
 	int MIN_LENGTH = 10;
 	

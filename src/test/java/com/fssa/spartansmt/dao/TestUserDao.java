@@ -11,7 +11,7 @@ import com.fssa.spartansmt.model.User;
 public class TestUserDao {
 	
 	// Valid User Details 
-	public static User user() {
+	static User user() {
 		
 		User ud = new User();
 		ud.setUserId(2);
@@ -25,7 +25,7 @@ public class TestUserDao {
 	}
 	
 	// Invalid User Details
-	public static User invalidUser() {
+	static User invalidUser() {
 		
 		User ud = new User();
 		ud.setUserId(0);
@@ -39,31 +39,31 @@ public class TestUserDao {
 	}
 	
 	// Creating a UserDao Class Object.
-	public static UserDao userDao() {
+	static UserDao userDao() {
 		UserDao ud = new UserDao();
 		return ud;
 	}
 	
 	// Valid input Test Cases
 	@Test
-	public void testValidAddUser() throws DAOException {
+	void testValidAddUser() throws DAOException {
 		Assertions.assertTrue(userDao().addUser(user()));
 	}
 	
 	@Test
-	public void testValidUpdateUser() throws DAOException, InvalidUserException{
+	void testValidUpdateUser() throws DAOException, InvalidUserException{
 		Assertions.assertTrue(userDao().updateUser(user()));
 	}
 	
 	@Test
-	public void testValidGetAllUserDetails() throws DAOException {
+	void testValidGetAllUserDetails() throws DAOException {
 		Assertions.assertTrue(userDao().getAllUserDetails());
 	}
 	
 
 	// Invalid Input Test Cases
 	@Test
-	public void testInvalidAddUser() {
+	void testInvalidAddUser() {
 		
 		try {
 			userDao().addUser(invalidUser());
@@ -75,7 +75,7 @@ public class TestUserDao {
 	}
 	
 	@Test
-	public void testInvalidupdateUser() throws InvalidUserException {
+	void testInvalidupdateUser() throws InvalidUserException {
 		try {
 			User ud = new User();
 			ud.setUserId(1);
@@ -87,7 +87,7 @@ public class TestUserDao {
 	}
 	
 	@Test
-	public void testInvalidUserId() throws DAOException {
+	void testInvalidUserId() throws DAOException {
 		try {
 			userDao().updateUser(invalidUser());
 			Assertions.fail("Test Invalid User ID Method Is Failded");

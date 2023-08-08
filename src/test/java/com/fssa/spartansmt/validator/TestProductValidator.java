@@ -11,7 +11,7 @@ import com.fssa.spartansmt.model.Product;
 public class TestProductValidator {
 	
 	// Valid Product Object
-	public static Product validProduct() {
+	static Product validProduct() {
 		Product product = new Product();
 		product.setProductTitle("Mens Air Zoom Vomero 15 Running Shoe");
 		product.setProductPrice(1999);
@@ -22,7 +22,7 @@ public class TestProductValidator {
 	}
 	
 	// Invalid Product Object
-	public static Product invalidProduct() {
+	static Product invalidProduct() {
 		
 		Product invalidProduct = new Product(null, 500, null, 0);
 		return invalidProduct;
@@ -31,14 +31,14 @@ public class TestProductValidator {
 
 
 	@Test
-	public void testProductValidate() throws InvalidProductDetailsException {
+	void testProductValidate() throws InvalidProductDetailsException {
 
 		Assertions.assertTrue(ProductValidator.validate(validProduct()));
 	
 	}
 
 	@Test
-	public void testInvalidProduct() {
+	void testInvalidProduct() {
 		
 		try {
 
@@ -55,7 +55,7 @@ public class TestProductValidator {
 	// Null Attributes Test Cases
 	
 	@Test
-	public void testInvalidProductTitle() {
+	void testInvalidProductTitle() {
 		
 		try {
 			ProductValidator.validateProductTitle(invalidProduct().getProductTitle());
@@ -67,7 +67,7 @@ public class TestProductValidator {
 	}
 	
 	@Test
-	public void testInvalidProductPrice() {
+	void testInvalidProductPrice() {
 		
 		try {
 			ProductValidator.validateProductPrice(invalidProduct().getProductPrice());
@@ -79,7 +79,7 @@ public class TestProductValidator {
 	}
 	
 	@Test
-	public void testInvalidProductImageURL() {
+	void testInvalidProductImageURL() {
 		
 		try {
 			ProductValidator.validateProductImageLink(invalidProduct().getProductImage());
@@ -91,7 +91,7 @@ public class TestProductValidator {
 	}
 	
 	@Test
-	public void testInvalidProductStoreId() {
+	void testInvalidProductStoreId() {
 		
 		try {
 			ProductValidator.validateStoreId(invalidProduct().getStoreId());
@@ -104,7 +104,7 @@ public class TestProductValidator {
 	
 	
 	@Test
-	public void testInvalidProductURL() {
+	void testInvalidProductURL() {
 		
 		try {
 			String invalidProductUrl = "https://iili.io/HWXep1e";
@@ -117,13 +117,13 @@ public class TestProductValidator {
 	}
 	
 	@Test 
-	public void testValidProductId() throws InvalidProductDetailsException {
+	void testValidProductId() throws InvalidProductDetailsException {
 		ProductValidator pv = new ProductValidator();
 		Assertions.assertTrue(pv.validateProductId(validProduct().getProductId()));
 	}
 	
 	@Test
-	public void testInvalidProductId() {
+	void testInvalidProductId() {
 		try {
 			int invalidProductId = -1;
 			ProductValidator pv = new ProductValidator();
@@ -138,7 +138,7 @@ public class TestProductValidator {
 	// Empty Space Validations
 	
 	@Test
-	public void testInvalidProductTitleEmptySpace() {
+	void testInvalidProductTitleEmptySpace() {
 		
 		try {
 			Product p2 = new Product("", 1999, "https://iili.io/HWXep1e.png", 1);
@@ -151,7 +151,7 @@ public class TestProductValidator {
 	}
 	
 	@Test
-	public void testInvalidProductURLEmptySpace() {
+	void testInvalidProductURLEmptySpace() {
 		
 		try {
 			Product p2 = new Product("Mens Air Zoom Vomero 15 Running Shoe", 1000, "", 1);

@@ -10,7 +10,7 @@ import com.fssa.spartansmt.model.Product;
 
 public class TestProductDao {
 
-	public static Product validProduct() {
+	static Product validProduct() {
 
 		Product p1 = new Product();
 		p1.setProductId(15);
@@ -25,29 +25,29 @@ public class TestProductDao {
 	
 	
 	// Valid Test Cases
-	public static Product invalidProduct() {
+	static Product invalidProduct() {
 		Product p1 = new Product();
 		p1.setProductId(-1);
 		return p1;
 	}
 
 	@Test
-	public void testValidAddProduct() throws DAOException {
+	void testValidAddProduct() throws DAOException {
 		Assertions.assertTrue(ProductDao.addProduct(validProduct()));
 	}
 
 	@Test
-	public void testValidUpdateProduct() throws DAOException, InvalidProductDetailsException {
+	void testValidUpdateProduct() throws DAOException, InvalidProductDetailsException {
 		Assertions.assertTrue(ProductDao.updateProduct(validProduct()));
 	}
 
 	@Test
-	public void testValidDelectProduct() throws DAOException, InvalidProductDetailsException {
+	void testValidDelectProduct() throws DAOException, InvalidProductDetailsException {
 		Assertions.assertTrue(ProductDao.deleteProduct(validProduct().getProductId()));
 	}
 
 	@Test
-	public void testValidGetProductDetails() throws DAOException, InvalidProductDetailsException {
+	void testValidGetProductDetails() throws DAOException, InvalidProductDetailsException {
 		ProductDao pd = new ProductDao();
 		Assertions.assertTrue(pd.getAllProductDetails());
 	}
@@ -55,7 +55,7 @@ public class TestProductDao {
 	
 	// Invalid Test Cases
 	@Test
-	public void testInvalidAddProduct() {
+	void testInvalidAddProduct() {
 		
 		try {
 			ProductDao.addProduct(invalidProduct());
@@ -66,7 +66,7 @@ public class TestProductDao {
 	}
 	
 	@Test
-	public void testInvalidUpdateProduct() throws InvalidProductDetailsException, DAOException {
+	void testInvalidUpdateProduct() throws InvalidProductDetailsException, DAOException {
 		
 		try {
 			Product p2 = new Product();
@@ -79,7 +79,7 @@ public class TestProductDao {
 	}
 	
 	@Test
-	public void testInvalidUpdateProductId() throws InvalidProductDetailsException, DAOException {
+	void testInvalidUpdateProductId() throws InvalidProductDetailsException, DAOException {
 		
 		try {
 			ProductDao.updateProduct(invalidProduct());
@@ -90,7 +90,7 @@ public class TestProductDao {
 	}
 
 	@Test
-	public void testInvalidDelectProductId() throws InvalidProductDetailsException, DAOException {
+	void testInvalidDelectProductId() throws InvalidProductDetailsException, DAOException {
 		
 		try {
 			ProductDao.deleteProduct(invalidProduct().getProductId());

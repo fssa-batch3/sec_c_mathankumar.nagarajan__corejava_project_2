@@ -177,7 +177,7 @@ public class UserValidator {
 		 * The Matches returned False below Exception will throw.
 		 * Otherwise this Method will return true.
 		 */
-		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_PASSWORD, password);
+		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_PASS_PATTERN, password);
 		
 		if(!isMatch) {
 			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_PASSWORD);

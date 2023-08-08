@@ -10,13 +10,13 @@ import com.fssa.spartansmt.model.Store;
 public class TestStoreValidator {
 	
 	@Test
-	public void testValidateStore() throws InvalidStoreDetailsException {
+	void testValidateStore() throws InvalidStoreDetailsException {
 		Store store = new Store("Nike", "Shoes Shop", "https://iili.io/HkeiZmb.webp");
 		Assertions.assertTrue(StoreValidator.validate(store));
 	}
 	
 	@Test
-	public void testValidateStoreNull() {
+	void testValidateStoreNull() {
 		try {
 			StoreValidator.validate(null);
 		}catch(InvalidStoreDetailsException ex) {
@@ -25,7 +25,7 @@ public class TestStoreValidator {
 	}
 	
 	@Test
-	public void testValidateStoreName() {
+	void testValidateStoreName() {
 		Store store = new Store(null, "Shoes Shop", "https://iili.io/HWXkdkx.png");		
 		try {
 			StoreValidator.validate(store);
@@ -35,7 +35,7 @@ public class TestStoreValidator {
 	}
 	
 	@Test
-	public void testValidateStoreCategory() {
+	void testValidateStoreCategory() {
 		Store store = new Store("Nike", null, "https://iili.io/HWXkdkx.png");		
 		try {
 			StoreValidator.validate(store);
@@ -45,7 +45,7 @@ public class TestStoreValidator {
 	}
 	
 	@Test
-	public void testValidateStoreImageLink() {
+	void testValidateStoreImageLink() {
 		Store store = new Store("Nike", "Shoes Shop", null);		
 		try {
 			StoreValidator.validate(store);
@@ -55,7 +55,7 @@ public class TestStoreValidator {
 	}
 	
 	@Test 
-	public void testInvalidStoreImageURL() {
+	void testInvalidStoreImageURL() {
 		
 		Store store = new Store("Nike", "Shoes Shop", "https://iili.io/HWXkdkx");
 		try {
@@ -67,7 +67,7 @@ public class TestStoreValidator {
 	}
 	
 	@Test 
-	public void testInvalidStoreId() {
+	void testInvalidStoreId() {
 		
 		try {
 			StoreValidator sv = new StoreValidator();
@@ -83,7 +83,7 @@ public class TestStoreValidator {
 	// Empty String
 	
 	@Test
-	public void testValidateEmptyStoreName() {
+	void testValidateEmptyStoreName() {
 		
 		Store store = new Store();
 		store.setId(1);
@@ -99,7 +99,7 @@ public class TestStoreValidator {
 	}
 	
 	@Test
-	public void testValidateEmptyStoreCategory() {
+	void testValidateEmptyStoreCategory() {
 		Store store = new Store("Nike", "", "https://iili.io/HWXkdkx.png");	
 		try {
 			StoreValidator.validate(store);
@@ -109,7 +109,7 @@ public class TestStoreValidator {
 	}
 	
 	@Test
-	public void testValidateEmptyStoreImageLink() {
+	void testValidateEmptyStoreImageLink() {
 		Store store = new Store("Nike", "Shoes Shop", "");		
 		try {
 			StoreValidator.validate(store);
@@ -119,7 +119,7 @@ public class TestStoreValidator {
 	}
 
 	@Test
-	public void testValidateStoreId() throws InvalidStoreDetailsException {
+	void testValidateStoreId() throws InvalidStoreDetailsException {
 		StoreValidator storeValidator = new StoreValidator();
 		Store store = new Store();
 		store.setId(1);

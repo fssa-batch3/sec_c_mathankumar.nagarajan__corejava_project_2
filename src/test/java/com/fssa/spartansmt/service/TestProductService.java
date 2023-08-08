@@ -9,7 +9,7 @@ import com.fssa.spartansmt.model.Product;
 
 public class TestProductService {
 
-	public Product demoProduct() {
+	Product demoProduct() {
 
 		Product p1 = new Product();
 		p1.setProductId(6);
@@ -24,7 +24,7 @@ public class TestProductService {
 	
 
 	@Test
-	public void testValidAddProduct() throws InvalidProductDetailsException, DAOException {
+	void testValidAddProduct() throws InvalidProductDetailsException, DAOException {
 
 		TestProductService tps = new TestProductService();
 		Assertions.assertTrue(ProductService.addProduct(tps.demoProduct()));
@@ -32,18 +32,18 @@ public class TestProductService {
 	}
 
 	@Test
-	public void testValidUpdateProduct() throws InvalidProductDetailsException, DAOException {
+	void testValidUpdateProduct() throws InvalidProductDetailsException, DAOException {
 		TestProductService tps = new TestProductService();
 		Assertions.assertTrue(ProductService.updateProduct(tps.demoProduct()));
 	}
 
 	@Test
-	public void testValidDeleteProduct() throws InvalidProductDetailsException, DAOException {
+	void testValidDeleteProduct() throws InvalidProductDetailsException, DAOException {
 		Assertions.assertTrue(ProductService.deleteProduct(6));
 	}
 
 	@Test
-	public void testValidGetAllProductDetails() throws DAOException {
+	void testValidGetAllProductDetails() throws DAOException {
 		ProductService ps = new ProductService();
 		Assertions.assertTrue(ps.getAllProductDetails());
 	}

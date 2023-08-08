@@ -10,7 +10,7 @@ import com.fssa.spartansmt.model.Store;
 
 public class TestStoreDao {
 	
-	public Store storeDetails() {
+	Store storeDetails() {
 		
 		Store s = new Store();
 		s.setId(14);
@@ -22,27 +22,27 @@ public class TestStoreDao {
 	}
 	
 	@Test
-	public void testValidateAddStore() throws DAOException {
+	void testValidateAddStore() throws DAOException {
 		Assertions.assertTrue(StoreDao.addStore(storeDetails()));
 	}
 	
 	@Test
-	public void testValidateUpdateStore() throws DAOException, InvalidStoreDetailsException {
+	void testValidateUpdateStore() throws DAOException, InvalidStoreDetailsException {
 		Assertions.assertTrue(StoreDao.updateStore(storeDetails()));
 	}
 	
 	@Test
-	public void testValidateDeleteStore() throws InvalidStoreDetailsException, DAOException {
+	void testValidateDeleteStore() throws InvalidStoreDetailsException, DAOException {
 		Assertions.assertTrue(StoreDao.deleteStore(14));
 	}
 	
 	@Test
-	public void testValidateGetAllStoreDetails() throws DAOException {
+	void testValidateGetAllStoreDetails() throws DAOException {
 		Assertions.assertTrue(StoreDao.getAllStoreDetails());
 	}
 
 	@Test 
-	public void testInvalidUpdateStoreId() throws DAOException, InvalidStoreDetailsException {
+	void testInvalidUpdateStoreId() throws DAOException, InvalidStoreDetailsException {
 		
 		Store sl = new Store();
 		sl.setId(0);
@@ -60,7 +60,7 @@ public class TestStoreDao {
 	}
 	
 	@Test 
-	public void testInvalidDeleteStoreId() throws InvalidStoreDetailsException, DAOException {
+	void testInvalidDeleteStoreId() throws InvalidStoreDetailsException, DAOException {
 		
 		try {
 			StoreDao.deleteStore(-1);

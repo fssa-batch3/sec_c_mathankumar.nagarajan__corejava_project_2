@@ -11,7 +11,7 @@ public class TestStoreService {
 
 
 	@Test
-	public void testValidateAddStore() throws DAOException, InvalidStoreDetailsException {
+	void testValidateAddStore() throws DAOException, InvalidStoreDetailsException {
 		
 		Store s1 = new Store("Poorvika", "Mobile Shop", "https://iili.io/HWXknrg.png");
 		StoreService ss = new StoreService();
@@ -20,7 +20,7 @@ public class TestStoreService {
 	}
 	
 	@Test 
-	public void testValidateUpdateStore() throws InvalidStoreDetailsException, DAOException {
+	void testValidateUpdateStore() throws InvalidStoreDetailsException, DAOException {
 		Store s1 = new Store();
 		s1.setId(12);
 		s1.setName("MAC");
@@ -31,14 +31,14 @@ public class TestStoreService {
 	}
 	
 	@Test
-	public void testValidateDeleteStore() throws InvalidStoreDetailsException, DAOException {
+	void testValidateDeleteStore() throws InvalidStoreDetailsException, DAOException {
 		Store s2 = new Store();
 		s2.setId(13);
 		Assertions.assertTrue(StoreService.deleteStore(s2.getId()));
 	}
 	
 	@Test
-	public void testValidateGetAllStoreDetails() throws DAOException {
+	void testValidateGetAllStoreDetails() throws DAOException {
 		Assertions.assertTrue(StoreService.getAllStoreDetails());
 	}
 
