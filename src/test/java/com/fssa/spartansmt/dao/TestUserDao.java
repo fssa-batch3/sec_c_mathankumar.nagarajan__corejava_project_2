@@ -78,7 +78,7 @@ public class TestUserDao {
 	void testInvalidupdateUser() throws InvalidUserException {
 		try {
 			User ud = new User();
-			ud.setUserId(1);
+			ud.setUserId(5);
 			userDao().updateUser(ud);
 			Assertions.fail("Test Invalid Update User Method Is Failed");
 		}catch(DAOException ex) {
