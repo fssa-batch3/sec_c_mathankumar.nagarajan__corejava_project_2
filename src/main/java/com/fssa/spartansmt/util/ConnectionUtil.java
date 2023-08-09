@@ -3,17 +3,19 @@ package com.fssa.spartansmt.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.logger.Logger;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
- 
 public class ConnectionUtil {
 
-	public static Connection getConnection() {
+	public static Connection getConnection() throws DAOException {
 		Connection con = null;
 
-		String url, username, password;
+		String url;
+		String username;
+		String password;
 
 		if (System.getenv("CI") != null) {
 			url = System.getenv("DATABASE_HOST");
@@ -32,13 +34,9 @@ public class ConnectionUtil {
 			Logger.info("Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException("Unable to connect to the database");
+			throw new DAOException("Unable to connect to the database");
 		}
 		return con;
-	}
-	
-	public static void main(String[] args) {
-		getConnection();
 	}
 
 }

@@ -1,7 +1,9 @@
 package com.fssa.spartansmt.constants;
 
 public class UserConstants {
-
+private UserConstants() {
+//	private Constructor
+}
 	/*
 	 * Mobile number should have minimum Length of 10.
 	 */

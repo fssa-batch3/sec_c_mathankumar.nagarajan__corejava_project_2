@@ -121,7 +121,7 @@ public class UserDao {
 					 */
 					while (rs.next()) {
 
-						System.out.println("User ID: " + rs.getInt("user_id") + ", First Name: "
+						Logger.info("User ID: " + rs.getInt("user_id") + ", First Name: "
 								+ rs.getString("first_name") + ", Last Name: " + rs.getString("last_name")
 								+ ", Phonenumber: " + rs.getString("phone_number") + ", Email: " + rs.getString("email")
 								+ ", Password: " + rs.getString("password"));

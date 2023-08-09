@@ -1,7 +1,9 @@
 package com.fssa.spartansmt.errors;
 
 public class UserValidatorErrors {
-	
+	private UserValidatorErrors() {
+//		private constructor
+	}
 	public static final String INVALID_USER_NULL = "User Object Can't be Null.";
 	
 	public static final String INVALID_USER_FIRST_NAME = "User firstname can't be null or empty.";

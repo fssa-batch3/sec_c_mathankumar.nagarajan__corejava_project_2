@@ -1,7 +1,9 @@
 package com.fssa.spartansmt.regexpattern;
 
 public class ProductRegexPatterns {
-	
+	private ProductRegexPatterns() {
+//		private constructor
+	}
 	/*
 	 * IMAGE REGEX Pattern Use to validate the Image URL.
 	 */

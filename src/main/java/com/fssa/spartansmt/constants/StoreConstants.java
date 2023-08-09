@@ -7,10 +7,13 @@ package com.fssa.spartansmt.constants;
  */
 
 public class StoreConstants {
-	
+	private StoreConstants() {
+//	private constructor	
+	}
+
 	/*
-	 * It's the maximum number of Invalid Store Id.
-	 * The id should have more then zero.
+	 * It's the maximum number of Invalid Store Id. The id should have more then
+	 * zero.
 	 */
 	public static final int INVALID_MAXIMUM_STORE_ID = 0;
 

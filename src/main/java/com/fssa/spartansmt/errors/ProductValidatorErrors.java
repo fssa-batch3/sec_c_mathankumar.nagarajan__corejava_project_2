@@ -1,7 +1,9 @@
 package com.fssa.spartansmt.errors;
 
 public class ProductValidatorErrors {
-	
+	private ProductValidatorErrors() {
+//		private constructor
+	}
 	// Product Object Validation Error
 	public static final String INVALID_PRODUCT_NULL = "Product Obj Can't Be Null";
 	

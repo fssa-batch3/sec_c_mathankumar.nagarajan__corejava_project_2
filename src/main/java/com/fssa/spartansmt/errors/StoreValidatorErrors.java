@@ -1,7 +1,9 @@
 package com.fssa.spartansmt.errors;
 
-public interface StoreValidatorErrors {
-	
+public class StoreValidatorErrors {
+	private StoreValidatorErrors() {
+//		private constructor
+	}
 	// Store Attributes validate Errors
 	public static final String INVALID_ATTRIBUTES = "Name or Category or Image link can't be null";
 	

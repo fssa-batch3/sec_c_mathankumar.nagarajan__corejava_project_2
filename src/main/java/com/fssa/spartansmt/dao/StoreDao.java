@@ -17,6 +17,7 @@ import com.fssa.spartansmt.model.Store;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
 public class StoreDao {
+	
 
 	/*
 	 *  Add Store Details to Database Using add Store Method

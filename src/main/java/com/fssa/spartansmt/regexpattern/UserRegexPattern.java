@@ -1,7 +1,9 @@
 package com.fssa.spartansmt.regexpattern;
 
 public class UserRegexPattern {
-	
+	private UserRegexPattern() {
+//		private constructor
+	}
 	public static final String REGEX_EMAIL = "^[a-z0-9][a-zA-Z0-9._%+-]*@[a-z0-9.-]+\\.[a-z]{2,}$";
 	
 	public static final String REGEX_MOBILE_NUM = "[6789][0-9]{9}";
