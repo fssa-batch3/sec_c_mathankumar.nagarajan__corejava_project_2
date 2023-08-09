@@ -12,6 +12,6 @@ public interface StoreConstants {
 	 * It's the maximum number of Invalid Store Id.
 	 * The id should have more then zero.
 	 */
-	int INVALID_MAXIMUM_STORE_ID = 0;
+	final int INVALID_MAXIMUM_STORE_ID = 0;
 
 }

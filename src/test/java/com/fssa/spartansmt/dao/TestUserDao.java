@@ -14,8 +14,8 @@ public class TestUserDao {
 	static User user() {
 		
 		User ud = new User();
-		ud.setUserId(2);
-		ud.setFirstName("Mathankumar");
+		ud.setUserId(5);
+		ud.setFirstName("Mathan");
 		ud.setLastName("GN");
 		ud.setPhoneNumber("8940169934");
 		ud.setEmail("junittest@gmail.com");

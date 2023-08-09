@@ -1,5 +1,7 @@
 package com.fssa.spartansmt.service;
 
+import java.util.List;
+
 import com.fssa.spartansmt.dao.ProductDao;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
@@ -77,7 +79,7 @@ public class ProductService {
 	 *  to validate the object or Id. So this Method Dirtily call 
 	 *  the Dao Layer Method.
 	 */
-	public boolean getAllProductDetails() throws DAOException {
+	public List<Product> getAllProductDetails() throws DAOException {
 
 		/*
 		 *  Creating a Product Dao Object
@@ -87,8 +89,7 @@ public class ProductService {
 		/*
 		 *  Accessing the getAllProductDetails Method through the Product Dao Object.
 		 */
-		pd.getAllProductDetails();
-		return true;
+		return pd.getAllProductDetails(); 
 
 	}
 

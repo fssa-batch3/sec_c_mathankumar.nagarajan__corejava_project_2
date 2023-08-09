@@ -52,6 +52,7 @@ public class Store {
 		return "Store [id=" + id + ", name=" + name + ", category=" + category + ", storeLogoLink=" + storeLogoLink
 				+ "]";
 	}
+
 	
 	
 	

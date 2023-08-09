@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fssa.spartansmt.constants.StoreConstants;
 import com.fssa.spartansmt.errors.StoreValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
+import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Store;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
@@ -48,8 +51,8 @@ public class StoreDao {
 		/*
 		 *  Print Statement
 		 */
-		System.out.println("Added Successfully");
-
+		Logger.info("Added Successfully");
+		
 		return true;
  
 	}
@@ -95,7 +98,7 @@ public class StoreDao {
 		/*
 		 *  Print Statement
 		 */
-		System.out.println("Updated Successfully");
+		Logger.info("Updated Successfully");
 
 		return true;
 
@@ -140,13 +143,15 @@ public class StoreDao {
 		/*
 		 *  Print Statement
 		 */
-		System.out.println("Deleted Successfully");
+		Logger.info("Deleted Successfully");
 		
 		return true;
 		
 	}
 	
-	public static boolean getAllStoreDetails() throws DAOException {
+	public static List<Store> getAllStoreDetails() throws DAOException {
+		
+		List<Store> storeList = new ArrayList<>();
 		
 		/*
 		 *  Get Connection From Connection Util
@@ -173,7 +178,8 @@ public class StoreDao {
 					 */
 					while(rs.next()) {
 						
-						System.out.println("Store ID: " + rs.getInt("store_id") + ", Store Name: " + rs.getString("store_name") + ", Store Category: " + rs.getString("category") + ", Store Logo Link: " + rs.getString("store_logo"));
+						Store store = createStoreFromResultSet(rs);
+						storeList.add(store);
 						
 					}
 					
@@ -185,7 +191,29 @@ public class StoreDao {
 			throw new DAOException("Error for fetching Store Details");
 		}
 		
-		return true;
+		return storeList;
+		
+	}
+	
+	/*
+	 * Here Is Create a Separate Method which is assign a value to Store Object
+	 * And this Method is return a Store Object.
+	 */
+	public static Store createStoreFromResultSet(ResultSet rs) throws SQLException {
+		
+		// Created a new Store Object
+		Store st = new Store();
+		
+		/*
+		 * Here is Assigning the value to the Store Object
+		 */
+		st.setId(rs.getInt("store_id"));
+		st.setName(rs.getString("store_name"));
+		st.setCategory(rs.getString("category"));
+		st.setStoreLogoLink(rs.getString("store_logo"));
+		
+		// Returning a Store Object
+		return st;
 		
 	}
 

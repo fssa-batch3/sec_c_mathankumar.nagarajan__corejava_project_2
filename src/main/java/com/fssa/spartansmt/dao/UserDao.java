@@ -10,6 +10,7 @@ import com.fssa.spartansmt.constants.UserConstants;
 import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
+import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.User;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
@@ -43,8 +44,8 @@ public class UserDao {
 				pst.setString(5, user.getPassword());
 				pst.executeUpdate();
 
-				System.out.println("User Details Successfully Added To The Database");
-
+				Logger.info("User Details Successfully Added To The Database");
+				
 			}
 
 		} catch (SQLException ex) {
@@ -80,8 +81,8 @@ public class UserDao {
 				pst.setInt(5, user.getUserId());
 				pst.executeUpdate();
 
-				System.out.println("User Details Updated Successfully");
-
+				Logger.info("User Details Updated Successfully");
+				
 			}
 
 		} catch (SQLException ex) {

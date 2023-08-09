@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fssa.spartansmt.constants.ProductConstants;
 import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
+import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
@@ -45,8 +48,8 @@ public class ProductDao {
 				pst.setInt(4, product.getStoreId());
 				pst.executeUpdate();
 
-				System.out.println("Product Added Successfully To The Database");
-
+				Logger.info("Product Added Successfully To The Database");
+				
 			}
 
 		} catch (SQLException ex) {
@@ -86,8 +89,9 @@ public class ProductDao {
 				pst.setInt(4, product.getProductId());
 				pst.executeUpdate();
 
-				System.out.println("Product Updated Successfully");
-
+				// Print Statement
+				Logger.info("Product Updated Successfully");
+				
 			}
 
 		} catch (SQLException ex) {
@@ -135,13 +139,16 @@ public class ProductDao {
 		/*
 		 *  Print Statement
 		 */
-		System.out.println("Deleted Successfully");
-
+		Logger.info("Deleted Successfully");
+		
 		return true;
 
 	}
 
-	public boolean getAllProductDetails() throws DAOException {
+	public List<Product> getAllProductDetails() throws DAOException {
+		
+		// Created a List Object
+		List<Product> productList = new ArrayList<>();
 
 		/*
 		 *  Get Connection From Connection Util
@@ -168,11 +175,9 @@ public class ProductDao {
 					 *  Get All Store Details using ResultSet and Printing Store Details One by One.
 					 */
 					while (rs.next()) {
-
-						System.out.println("Product ID: " + rs.getInt("product_id") + ", Product Name: "
-								+ rs.getString("product_title") + ", Product Price: " + rs.getDouble("product_price")
-								+ ", Product Image URL: " + rs.getString("product_image") + ", Store ID: "
-								+ rs.getInt("store_id"));
+						
+						Product product = createProductFromResultSet(rs);
+						productList.add(product);
 
 					}
 
@@ -184,8 +189,35 @@ public class ProductDao {
 			throw new DAOException("Error for fetching Product Details");
 		}
 
-		return true;
+		// Returning a product list (ArrayList).
+		return productList;
 
+	}
+	
+	/*
+	 * This Method is Get an Object through the getAllProductDetails Method
+	 * And Set Object Value's to Product Object And It will Return the 
+	 * Product Object.
+	 */
+	public static Product createProductFromResultSet(ResultSet rs) throws SQLException {
+		
+		/*
+		 * Created a empty Project Object
+		 */
+		Product product = new Product();
+		
+		/*
+		 * Assigning a Value to Product Using Setter Method
+		 */
+		product.setProductId(rs.getInt("product_id"));
+		product.setStoreId(rs.getInt("store_id"));
+		product.setProductTitle(rs.getString("product_title"));
+		product.setProductPrice(rs.getDouble("product_price"));
+		product.setProductImage(rs.getString("product_image"));
+		
+		// Returning the product object.
+		return product;
+		
 	}
 
 }

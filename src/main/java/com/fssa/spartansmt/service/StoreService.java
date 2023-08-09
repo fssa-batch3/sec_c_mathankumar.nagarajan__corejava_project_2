@@ -1,5 +1,7 @@
 package com.fssa.spartansmt.service;
 
+import java.util.List;
+
 import com.fssa.spartansmt.dao.StoreDao;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
@@ -38,11 +40,9 @@ public class StoreService {
 	 *  Get All Store Details Method Directly it Call the StoreDao.
 	 *  Because It Should not have any Parameter to Validate.
 	 */
-	public static boolean getAllStoreDetails() throws DAOException {
+	public static List<Store> getAllStoreDetails() throws DAOException {
 
-		StoreDao.getAllStoreDetails();
-
-		return true;
+		return StoreDao.getAllStoreDetails();
 
 	}
 	

@@ -8,12 +8,5 @@ public class InvalidProductDetailsException extends Exception {
 		super(msg);
 	}
 
-	public InvalidProductDetailsException(Throwable te) {
-		super(te);
-	}
-
-	public InvalidProductDetailsException(String msg, Throwable te) {
-		super(msg, te);
-	}
 
 }

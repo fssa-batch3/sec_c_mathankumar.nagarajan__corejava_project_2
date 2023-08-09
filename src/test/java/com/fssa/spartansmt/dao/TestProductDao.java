@@ -1,11 +1,16 @@
 package com.fssa.spartansmt.dao;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
+import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 
 public class TestProductDao {
@@ -48,8 +53,17 @@ public class TestProductDao {
 
 	@Test
 	void testValidGetProductDetails() throws DAOException, InvalidProductDetailsException {
-		ProductDao pd = new ProductDao();
-		Assertions.assertTrue(pd.getAllProductDetails());
+		
+		try {
+			ProductDao pd = new ProductDao();
+			List<Product> productList = pd.getAllProductDetails();
+			for(Product ele : productList) {
+				Logger.info(ele);
+			}
+		}catch(DAOException ex) {
+			fail("Get All Product Details Method Is Failded");
+		}
+		
 	}
 
 	

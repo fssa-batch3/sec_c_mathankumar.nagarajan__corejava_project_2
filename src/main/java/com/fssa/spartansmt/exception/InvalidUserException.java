@@ -8,12 +8,5 @@ public class InvalidUserException extends Exception{
 		super(msg);
 	}
 
-	public InvalidUserException(Throwable te) {
-		super(te);
-	}
-
-	public InvalidUserException(String msg, Throwable te) {
-		super(msg, te);
-	}
 
 }

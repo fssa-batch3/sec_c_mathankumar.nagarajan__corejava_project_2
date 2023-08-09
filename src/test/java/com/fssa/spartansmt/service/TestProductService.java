@@ -1,10 +1,16 @@
 package com.fssa.spartansmt.service;
 
+
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
+import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 
 public class TestProductService {
@@ -45,7 +51,14 @@ public class TestProductService {
 	@Test
 	void testValidGetAllProductDetails() throws DAOException {
 		ProductService ps = new ProductService();
-		Assertions.assertTrue(ps.getAllProductDetails());
+		try {
+			List<Product> productList = ps.getAllProductDetails();
+			for(Product ele : productList) {
+				Logger.info(ele);
+			}
+		}catch(DAOException ex) {
+			fail("Get Product Detials Methos Is Failded");
+		}
 	}
 	
 }
