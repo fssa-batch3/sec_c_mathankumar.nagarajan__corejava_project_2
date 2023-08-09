@@ -7,7 +7,7 @@ import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.model.User;
 
-public class TestUserService {
+class TestUserService {
 	
 	static User user() {
 		User u = new User();

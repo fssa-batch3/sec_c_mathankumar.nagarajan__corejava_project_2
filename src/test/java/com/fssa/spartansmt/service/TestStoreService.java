@@ -12,7 +12,7 @@ import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
 import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Store;
 
-public class TestStoreService {
+class TestStoreService {
 
 
 	@Test

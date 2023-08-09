@@ -13,7 +13,7 @@ import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 
-public class TestProductDao {
+class TestProductDao {
 
 	static Product validProduct() {
 

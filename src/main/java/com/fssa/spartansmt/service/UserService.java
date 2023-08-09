@@ -18,26 +18,6 @@ import com.fssa.spartansmt.validator.UserValidator;
 public class UserService {
 	
 	/*
-	 * Created the User Validator Method.
-	 * This Method will return the UserValidator Object.
-	 * Using This object to Get Access the UserValidator class Method's.
-	 */
-	public static UserValidator userValidator() {
-		UserValidator uv = new UserValidator();
-		return uv;
-	}
-	
-	/*
-	 * Created the User Dao Method. 
-	 * This Method will return the UserDao Object.
-	 * Using this Object to Get Access the UserDao Class Method's
-	 */
-	public static UserDao userDao() {
-		UserDao ud = new UserDao();
-		return ud;
-	}
-	
-	/*
 	 * Add User Service Method 
 	 */
 	public boolean addUser(User user) throws InvalidUserException, DAOException {
@@ -48,8 +28,8 @@ public class UserService {
 		 * User object to the Add User Dao Layer Otherwise it will throw the 
 		 * Exception.
 		 */
-		if(userValidator().validate(user)) {
-			userDao().addUser(user);
+		if(new UserValidator().validate(user)) {
+			new UserDao().addUser(user);
 		}
 		return true;
 		
@@ -65,8 +45,8 @@ public class UserService {
 		 * Object is valid It should send the User Object to the Update User Dao
 		 * Layer. Otherwise It will throw the Exception.
 		 */
-		if(userValidator().validate(user)) {
-			userDao().updateUser(user);
+		if(new UserValidator().validate(user)) {
+			new UserDao().updateUser(user);
 		}
 		return true;
 		
@@ -79,7 +59,7 @@ public class UserService {
 	 */
 	public boolean getAllUserDetails() throws DAOException {
 
-		userDao().getAllUserDetails();
+		new UserDao().getAllUserDetails();
 		return true;
 	}
 	

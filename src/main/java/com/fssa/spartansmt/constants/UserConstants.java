@@ -1,15 +1,15 @@
 package com.fssa.spartansmt.constants;
 
-public interface UserConstants {
+public class UserConstants {
 
 	/*
 	 * Mobile number should have minimum Length of 10.
 	 */
-	final int MIN_LENGTH = 10;
+	public static final int MIN_LENGTH = 10;
 	
 	/*
 	 * The User ID should have more then zero.
 	 */
-	final int INVALID_USER_ID = 0;
+	public static final int INVALID_USER_ID = 0;
 	
 }

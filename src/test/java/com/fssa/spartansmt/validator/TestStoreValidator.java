@@ -7,7 +7,7 @@ import com.fssa.spartansmt.errors.StoreValidatorErrors;
 import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
 import com.fssa.spartansmt.model.Store;
 
-public class TestStoreValidator {
+class TestStoreValidator {
 	
 	@Test
 	void testValidateStore() throws InvalidStoreDetailsException {

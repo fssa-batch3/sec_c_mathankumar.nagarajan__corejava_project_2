@@ -8,7 +8,7 @@ import com.fssa.spartansmt.errors.StoreValidatorErrors;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.model.Product;
 
-public class TestProductValidator {
+class TestProductValidator {
 	
 	// Valid Product Object
 	static Product validProduct() {

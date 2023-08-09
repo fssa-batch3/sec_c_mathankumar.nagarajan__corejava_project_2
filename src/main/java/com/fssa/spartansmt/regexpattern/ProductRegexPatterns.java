@@ -1,10 +1,10 @@
 package com.fssa.spartansmt.regexpattern;
 
-public interface ProductRegexPatterns {
+public class ProductRegexPatterns {
 	
 	/*
 	 * IMAGE REGEX Pattern Use to validate the Image URL.
 	 */
-	final String IMAGE_REGEX = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg|webp))";
+	public static final String IMAGE_REGEX = "(http)?s?:?(\\/\\/[^\"']*\\.(?:png|jpg|jpeg|gif|png|svg|webp))";
 
 }

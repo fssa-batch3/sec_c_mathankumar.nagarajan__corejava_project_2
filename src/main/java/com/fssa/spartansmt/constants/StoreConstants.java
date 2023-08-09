@@ -6,12 +6,12 @@ package com.fssa.spartansmt.constants;
  * @author MathankumarNagarajan
  */
 
-public interface StoreConstants {
+public class StoreConstants {
 	
 	/*
 	 * It's the maximum number of Invalid Store Id.
 	 * The id should have more then zero.
 	 */
-	final int INVALID_MAXIMUM_STORE_ID = 0;
+	public static final int INVALID_MAXIMUM_STORE_ID = 0;
 
 }

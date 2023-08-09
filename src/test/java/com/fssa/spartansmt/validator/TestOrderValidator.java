@@ -11,7 +11,7 @@ import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.model.Order;
 
-public class TestOrderValidator {
+class TestOrderValidator {
 	
 	static Order validOrder() {
 		Order order = new Order(1, 1, 1999);

@@ -7,7 +7,7 @@ import com.fssa.spartansmt.errors.UserValidatorErrors;
 import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.model.User;
 
-public class TestUserValidator {
+class TestUserValidator {
 	
 	static User validUser() {
 		User u1 = new User();
