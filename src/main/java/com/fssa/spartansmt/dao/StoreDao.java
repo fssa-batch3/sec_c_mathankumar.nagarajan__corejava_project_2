@@ -18,9 +18,9 @@ import com.fssa.spartansmt.util.ConnectionUtil;
 
 public class StoreDao {
 	
-	// Default Constructor
-	public StoreDao() {
-		// TODO Auto-generated constructor stub
+	
+	private StoreDao() {
+		// Default Constructor
 	}
 	
 
