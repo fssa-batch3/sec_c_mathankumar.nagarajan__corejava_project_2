@@ -8,6 +8,11 @@ import com.fssa.spartansmt.logger.Logger;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
+	
+	// Default Constructor
+	public ConnectionUtil() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public static Connection getConnection() {
 		Connection con = null;
