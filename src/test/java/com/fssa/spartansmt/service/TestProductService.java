@@ -3,6 +3,7 @@ package com.fssa.spartansmt.service;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -23,6 +24,7 @@ class TestProductService {
 		p1.setProductPrice(2900);
 		p1.setProductImage("https://iili.io/HkeiZmb.webp");
 		p1.setStoreId(2);
+		p1.setUploadedDate(LocalDate.now());
 
 		return p1;
 
@@ -48,7 +50,7 @@ class TestProductService {
 		Assertions.assertTrue(ProductService.deleteProduct(6));
 	}
 
-	@Test
+	@Test 
 	void testValidGetAllProductDetails() throws DAOException {
 		ProductService ps = new ProductService();
 		try {

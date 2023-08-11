@@ -1,5 +1,7 @@
 package com.fssa.spartansmt.validator;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,13 +20,14 @@ class TestProductValidator {
 		product.setProductImage("https://iili.io/HWXep1e.png");
 		product.setStoreId(1);
 		product.setProductId(1);
+		product.setUploadedDate(LocalDate.now());
 		return product;
 	}
 	
 	// Invalid Product Object
 	static Product invalidProduct() {
 		
-		Product invalidProduct = new Product(null, 500, null, 0);
+		Product invalidProduct = new Product(null, 500, null, 0, LocalDate.parse("2018-07-22"));
 		return invalidProduct;
 
 	}
@@ -141,7 +144,7 @@ class TestProductValidator {
 	void testInvalidProductTitleEmptySpace() {
 		
 		try {
-			Product p2 = new Product("", 1999, "https://iili.io/HWXep1e.png", 1);
+			Product p2 = new Product("", 1999, "https://iili.io/HWXep1e.png", 1, LocalDate.now());
 			ProductValidator.validate(p2);
 			Assertions.fail("Test Invalid Product Title Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
@@ -154,13 +157,47 @@ class TestProductValidator {
 	void testInvalidProductURLEmptySpace() {
 		
 		try {
-			Product p2 = new Product("Mens Air Zoom Vomero 15 Running Shoe", 1000, "", 1);
+			Product p2 = new Product("Mens Air Zoom Vomero 15 Running Shoe", 1000, "", 1, LocalDate.now());
 			ProductValidator.validate(p2);
 			Assertions.fail("Test Invalid Product Image URL Method Is Failded");
 		}catch(InvalidProductDetailsException ex) {
 			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_IMAGE_LOGO_URL, ex.getMessage());
 		}
 		
+	}
+	
+	@Test
+	void testInvalidProductUploadedDate() {
+		
+		try {
+			ProductValidator.validateUploadedDate(invalidProduct().getUploadedDate());
+			Assertions.fail("Test Invalid Uploaded Date Method Is Failded");
+		}catch(InvalidProductDetailsException ex) {
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_LOCALDATE, ex.getMessage());
+		}
+		
+	}
+	
+	@Test
+	void testInvalidProductUploadedDate2() {
+		
+		try {
+			ProductValidator.validateUploadedDate(invalidProduct().getUploadedDate());
+			Assertions.fail("Test Invalid Uploaded Date Method Is Failded");
+		}catch(InvalidProductDetailsException ex) {
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_LOCALDATE, ex.getMessage());
+		}
+		
+	}
+	
+	@Test
+	void testInvalidProductUploadedDate3() {
+		try {
+			ProductValidator.validateUploadedDate(null);
+			Assertions.fail("Test Invalid Product Uploaded Date Method Is Failded");
+		}catch(InvalidProductDetailsException ex) {
+			Assertions.assertEquals(ProductValidatorErrors.INVALID_LOCALDATE, ex.getMessage());
+		}
 	}
 	
 	

@@ -2,6 +2,7 @@ package com.fssa.spartansmt.dao;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -23,6 +24,7 @@ class TestProductDao {
 		p1.setProductPrice(29999);
 		p1.setProductImage("https://iili.io/HUMtFun.webp");
 		p1.setStoreId(3);
+		p1.setUploadedDate(LocalDate.now());
 
 		return p1;
 
@@ -33,6 +35,7 @@ class TestProductDao {
 	static Product invalidProduct() {
 		Product p1 = new Product();
 		p1.setProductId(-1);
+		p1.setUploadedDate(LocalDate.now());
 		return p1;
 	}
 

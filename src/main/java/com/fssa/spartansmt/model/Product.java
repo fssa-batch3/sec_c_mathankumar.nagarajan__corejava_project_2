@@ -1,5 +1,7 @@
 package com.fssa.spartansmt.model;
 
+import java.time.LocalDate;
+
 public class Product {
 	
 	private int productId;
@@ -7,6 +9,10 @@ public class Product {
 	private double productPrice;
 	private String productImage;
 	private int storeId;
+	
+	private LocalDate uploadedDate;
+	
+	// ADD LocalDate Attribute Here
 	
 	public int getProductId() {
 		return productId;
@@ -39,11 +45,19 @@ public class Product {
 		this.storeId = storeId;
 	}
 
-	public Product(String productTitle, double productPrice, String productImage, int storeId) {
+	public LocalDate getUploadedDate() {
+		return uploadedDate;
+	}
+	public void setUploadedDate(LocalDate uploadedDate) {
+		this.uploadedDate = uploadedDate;
+	}
+	
+	public Product(String productTitle, double productPrice, String productImage, int storeId, LocalDate uploadedDate) {
 		this.productTitle = productTitle;
 		this.productPrice = productPrice;
 		this.productImage = productImage;
 		this.storeId = storeId;
+		this.uploadedDate = uploadedDate;
 	}
 	
 	public Product() {

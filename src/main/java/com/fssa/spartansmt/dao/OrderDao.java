@@ -23,7 +23,7 @@ public class OrderDao {
 				
 				pst.setInt(1, order.getUserId());
 				pst.setInt(2, order.getTotalPrice());
-				pst.setString(3, order.getStatus());
+				pst.setString(3, order.getPaymentStatus());
 				pst.executeUpdate();
 				Logger.info("Successfully Placed Order");
 				
@@ -33,8 +33,8 @@ public class OrderDao {
 			try(PreparedStatement pst = con.prepareStatement(query2)){
 				
 				pst.setInt(1, getOrderId(order.getUserId()));
-				pst.setInt(2, order.getProductId());
-				pst.setInt(3, order.getQuentity());
+				pst.setInt(2, order.getOrderedProducts().getProductId());
+				pst.setInt(3, order.getOrderedProducts().getQuantity());
 				pst.executeUpdate();
 				Logger.info("Successfully Placed Product");
 				

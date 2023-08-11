@@ -1,10 +1,12 @@
 package com.fssa.spartansmt.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class ProductDao {
 			/*
 			 *  Declaring Query as a String and Using final Keyword
 			 */
-			final String query = "INSERT INTO products(product_title, product_price, product_image, store_id) values (?,?,?,?)";
+			final String query = "INSERT INTO products(product_title, product_price, product_image, store_id, uploaded_date) values (?,?,?,?,?)";
 
 			/*
 			 *  Created Prepared Statement And It'll Execute Query
@@ -46,6 +48,7 @@ public class ProductDao {
 				pst.setDouble(2, product.getProductPrice());
 				pst.setString(3, product.getProductImage());
 				pst.setInt(4, product.getStoreId());
+				pst.setDate(5, Date.valueOf(product.getUploadedDate()));
 				pst.executeUpdate();
 
 				Logger.info("Product Added Successfully To The Database");
@@ -80,13 +83,14 @@ public class ProductDao {
 			/*
 			 * Declaring a Query as a String and it also a constant value.
 			 */
-			final String query = "UPDATE products SET product_title = ?, product_price = ?, product_image = ? WHERE product_id = ?";
+			final String query = "UPDATE products SET product_title = ?, product_price = ?, product_image = ?, uploaded_date = ? WHERE product_id = ?";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setString(1, product.getProductTitle());
 				pst.setDouble(2, product.getProductPrice());
 				pst.setString(3, product.getProductImage());
-				pst.setInt(4, product.getProductId());
+				pst.setInt(5, product.getProductId());
+				pst.setDate(4, Date.valueOf(LocalDate.now()));
 				pst.executeUpdate();
 
 				// Print Statement

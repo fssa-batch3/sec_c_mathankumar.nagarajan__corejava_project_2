@@ -1,5 +1,6 @@
 package com.fssa.spartansmt.validator;
 
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 import com.fssa.spartansmt.constants.ProductConstants;
@@ -47,6 +48,11 @@ public class ProductValidator {
 		 * Invoked Validate Store Id Method.
 		 */
 		validateStoreId(product.getStoreId());
+		
+		/*
+		 * Invoked Validate UploadedDate Method
+		 */
+		validateUploadedDate(product.getUploadedDate());
 		
 		return true;
 
@@ -137,6 +143,30 @@ public class ProductValidator {
 
 		return true;
 
+	}
+	
+	/*
+	 * Product Uploaded	LocalDate Validation Method
+	 */
+	public static boolean validateUploadedDate(LocalDate uploadedDate) throws InvalidProductDetailsException {
+		
+		/*
+		 * Check if the date is null
+		 */
+		if(uploadedDate == null) {
+			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_LOCALDATE);
+		}
+		
+		/*
+		 * Check if the date is not equal to the current date 
+		 * (i.e., it should be present)
+		 */
+		if(!uploadedDate.isEqual(LocalDate.now())) {
+			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_LOCALDATE);
+		}
+		
+		return true;
+		
 	}
 
 }

@@ -1,30 +1,14 @@
 package com.fssa.spartansmt.model;
 
+import java.time.LocalDate;
+
 public class Order {
 
-	private int orderId;
 	private int userId;
-	private String status;
+	private String paymentStatus;
 	private int totalPrice;
-	private int quentity;
-	private int productId;
-	
-	public Order(int userId, int productId, int totalPrice) {
-		super();
-		this.userId = userId;
-		this.totalPrice = totalPrice;
-		this.productId = productId;
-		this.status = "NO";
-		this.quentity = 1;
-	}
-
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
+	private LocalDate orderDate;
+	private OrderedProducts orderedProducts;
 
 	public int getUserId() {
 		return userId;
@@ -34,12 +18,12 @@ public class Order {
 		this.userId = userId;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getPaymentStatus() {
+		return paymentStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
 
 	public int getTotalPrice() {
@@ -50,23 +34,28 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	public int getQuentity() {
-		return quentity;
+	public LocalDate getOrderDate() {
+		return orderDate;
 	}
 
-	public void setQuentity(int quentity) {
-		this.quentity = quentity;
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
 	}
 
-	public int getProductId() {
-		return productId;
+	public OrderedProducts getOrderedProducts() {
+		return orderedProducts;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setOrderedProducts(OrderedProducts orderedProducts) {
+		this.orderedProducts = orderedProducts;
 	}
-	
-	
-	
+
+	public Order(int userId, String paymentStatus, int totalPrice, LocalDate orderDate, OrderedProducts orderedProducts) {
+		this.userId = userId;
+		this.paymentStatus = paymentStatus;
+		this.totalPrice = totalPrice;
+		this.orderDate = orderDate;
+		this.orderedProducts = orderedProducts;
+	}
 
 }
