@@ -7,8 +7,12 @@ package com.fssa.spartansmt.constants;
  */
 
 public class StoreConstants {
+	
+	/*
+	 * Default Private Constructor
+	 */
 	private StoreConstants() {
-//	private constructor	
+		
 	}
 
 	/*

@@ -10,8 +10,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fssa.spartansmt.constants.ProductConstants;
-import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.logger.Logger;
@@ -20,6 +18,9 @@ import com.fssa.spartansmt.util.ConnectionUtil;
 
 /*
  * @author MathankumarNagarajan
+ * 
+ * A class which holds the Date access object
+ * It has methods with sql queries the methods will do CRUD operations on the product model object
  */
 
 public class ProductDao {
@@ -27,7 +28,7 @@ public class ProductDao {
 	/*
 	 *  Add Product Details to the Database Table through the Add Product Method
 	 */
-	public static boolean addProduct(Product product) throws DAOException {
+	public boolean addProduct(Product product) throws DAOException {
 
 		/*
 		 *  Get Connection form Connection Util
@@ -64,16 +65,9 @@ public class ProductDao {
 	}
 
 	/*
-	 *  Update Product Details to tbe Database Table Through the UpdateProduct Method
+	 *  Update Product Details to the Database Table Through the UpdateProduct Method
 	 */
 	public static boolean updateProduct(Product product) throws DAOException, InvalidProductDetailsException {
-
-		/*
-		 * Validating Store ID
-		 */
-		if (product.getProductId() <= ProductConstants.INVALID_PRODUCT_ID) {
-			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_ID);
-		}
 
 		/*
 		 *  Get connection from connection util
@@ -102,19 +96,15 @@ public class ProductDao {
 			throw new DAOException("Update Product Details to Datadase Method Is Failded");
 		}
 
-		return true;
+		return true; 
 
 	}
 
+	/*
+	 * deleteProduct Method will delete the product object
+	 * in the database product table.
+	 */
 	public static boolean deleteProduct(int productId) throws DAOException, InvalidProductDetailsException {
-
-		/*
-		 * Validating the Product Id if the product id is Zero or Less Zero
-		 * It will throw the Exception. Otherwise next Steps will run.
-		 */
-		if (productId <= ProductConstants.INVALID_PRODUCT_ID) {
-			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_ID);
-		}
 
 		/*
 		 *  Get Connection From Connection Util
@@ -223,5 +213,61 @@ public class ProductDao {
 		return product;
 		
 	}
+	
+	/*
+	 * This Method is Get the one specific store Products.
+	 */
+	public List<Product> getAllProductByStoreId(int storeId) throws DAOException{
+		
+		// Created a List Object
+				List<Product> productList = new ArrayList<>();
 
+				/*
+				 *  Get Connection From Connection Util
+				 */
+				try (Connection con = ConnectionUtil.getConnection()) {
+
+					/*
+					 *  Get Specific Store Product Details from Database. Declared Query as a String and Declared
+					 *  final keyword.
+					 */
+					final String query = "select * from products where store_id = '" + storeId + "'";
+
+					/*
+					 *  Connection Util Class CreateStatement Method Assigned by Statement Interface
+					 */
+					try (Statement st = con.createStatement()) {
+
+						/*
+						 *  Created ResultSet And Executing SQL Query
+						 */
+						try (ResultSet rs = st.executeQuery(query)) {
+
+							/*
+							 *  Get Specific Store Product Details using ResultSet and It will Print The Store Product Details One by One.
+							 */
+							while (rs.next()) {
+								
+								Product product = createProductFromResultSet(rs);
+								productList.add(product);
+
+							}
+
+						}
+
+					}
+
+				} catch (SQLException ex) {
+					throw new DAOException("Error for Get all product by store Method is Failded");
+				}
+
+				// Returning a product list (ArrayList).
+				return productList;
+		
+		
+		
+	}
+	
+	
+	
 }

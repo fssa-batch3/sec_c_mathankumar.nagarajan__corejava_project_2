@@ -19,8 +19,8 @@ class TestProductService {
 	Product demoProduct() {
 
 		Product p1 = new Product();
-		p1.setProductId(6);
-		p1.setProductTitle("Test Product Service");
+		p1.setProductId(27);
+		p1.setProductTitle("Oppo");
 		p1.setProductPrice(2900);
 		p1.setProductImage("https://iili.io/HkeiZmb.webp");
 		p1.setStoreId(2);
@@ -61,6 +61,20 @@ class TestProductService {
 		}catch(DAOException ex) {
 			fail("Get Product Detials Methos Is Failded");
 		}
-	}
+	} 
+	
+	
+	@Test 
+	void testValidGetAllProductDetailsByStoreId() throws DAOException {
+		ProductService ps = new ProductService();
+		try {
+			List<Product> productList = ps.getAllProductsByStoreId(demoProduct().getStoreId());
+			for(Product ele : productList) {
+				Logger.info(ele);
+			}
+		}catch(DAOException ex) {
+			fail("Get Product Detials Methos Is Failded");
+		}
+	} 
 	
 }

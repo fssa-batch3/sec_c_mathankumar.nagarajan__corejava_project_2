@@ -13,6 +13,9 @@ import com.fssa.spartansmt.regexpattern.ProductRegexPatterns;
 
 /*
  * @author MathankumarNagarajan
+ * 
+ * A class which holds the validation of the Product Model object.
+ * It has methods to validate the product model object.
  */
 
 public class ProductValidator {
@@ -54,6 +57,7 @@ public class ProductValidator {
 		 */
 		validateUploadedDate(product.getUploadedDate());
 		
+		// return statement
 		return true;
 
 	}

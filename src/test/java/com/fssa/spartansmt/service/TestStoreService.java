@@ -45,7 +45,8 @@ class TestStoreService {
 	@Test
 	void testValidateGetAllStoreDetails() throws DAOException{
 		try {
-			List<Store> storeList = StoreService.getAllStoreDetails();
+			StoreService storeService = new StoreService();
+			List<Store> storeList = storeService.getAllStoreDetails();
 			for(Store ele : storeList) {
 				Logger.info(ele);
 			}

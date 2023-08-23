@@ -1,5 +1,11 @@
 package com.fssa.spartansmt.errors;
 
+/*
+ * @author MathankumarNagarajan
+ * 
+ * An interface is has the Errors for the Product model object
+ * It has Variables as a String.
+ */
 public class ProductValidatorErrors {
 	
 	private ProductValidatorErrors() {

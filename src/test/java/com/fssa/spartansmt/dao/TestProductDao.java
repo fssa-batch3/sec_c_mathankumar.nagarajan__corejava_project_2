@@ -15,7 +15,7 @@ import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 
 class TestProductDao {
-
+	
 	static Product validProduct() {
 
 		Product p1 = new Product();
@@ -23,11 +23,11 @@ class TestProductDao {
 		p1.setProductTitle("IQOO Z6 44W (Lumina Blue, 128 GB) (8 GB RAM)");
 		p1.setProductPrice(29999);
 		p1.setProductImage("https://iili.io/HUMtFun.webp");
-		p1.setStoreId(3);
+		p1.setStoreId(2);
 		p1.setUploadedDate(LocalDate.now());
 
 		return p1;
-
+ 
 	}
 	
 	
@@ -41,7 +41,8 @@ class TestProductDao {
 
 	@Test
 	void testValidAddProduct() throws DAOException {
-		Assertions.assertTrue(ProductDao.addProduct(validProduct()));
+		ProductDao productDao = new ProductDao();
+		Assertions.assertTrue(productDao.addProduct(validProduct()));
 	}
 
 	@Test
@@ -70,12 +71,29 @@ class TestProductDao {
 	}
 
 	
+
+	@Test
+	void testValidGetProductsDetailsByStoreId() throws DAOException, InvalidProductDetailsException {
+		
+		try {
+			ProductDao pd = new ProductDao();
+			List<Product> productList = pd.getAllProductByStoreId(validProduct().getStoreId());
+			for(Product ele : productList) {
+				Logger.info(ele);
+			}
+		}catch(DAOException ex) {
+			fail("Get All Products Details By Store Id Method Is Failded");
+		}
+		
+	}
+	
 	// Invalid Test Cases
 	@Test
 	void testInvalidAddProduct() {
 		
 		try {
-			ProductDao.addProduct(invalidProduct());
+			ProductDao productDao = new ProductDao();
+			productDao.addProduct(invalidProduct());
 		}catch(DAOException ex) {
 			Assertions.assertEquals("Add Product to the Database Method is Failded", ex.getMessage());
 		}

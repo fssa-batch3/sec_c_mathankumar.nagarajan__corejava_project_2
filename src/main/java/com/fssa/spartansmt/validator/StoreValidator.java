@@ -8,8 +8,17 @@ import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
 import com.fssa.spartansmt.model.Store;
 import com.fssa.spartansmt.regexpattern.StoreRegexPatterns;
 
+/*
+ * @author MathankumarNagarajan
+ * 
+ * A class which holds the validation Methods for the Store Model class object.
+ */
 public class StoreValidator {
 
+	/*
+	 * The validate method will validate the full store model object.
+	 * This Method validate the object of store name, store category and store logo img url
+	 */
 	public static boolean validate(Store store) throws InvalidStoreDetailsException {
 
 		/*

@@ -1,8 +1,15 @@
 package com.fssa.spartansmt.regexpattern;
 
+/*
+ * @author MathankumarNagarajan
+ * 
+ * An interface which holds Regex Patterns Variables.
+ * It has only hold the regex patterns used in the Store Module.
+ */
 public class StoreRegexPatterns {
+	
 	private StoreRegexPatterns() {
-//	private constructor
+		// Private defulat constructor
 	}
 
 	/*

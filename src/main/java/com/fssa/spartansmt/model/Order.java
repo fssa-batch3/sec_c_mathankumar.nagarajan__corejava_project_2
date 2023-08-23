@@ -1,14 +1,35 @@
 package com.fssa.spartansmt.model;
 
 import java.time.LocalDate;
+import java.util.List;
+
+/*
+ * @author MathankumarNagarajan
+ * 
+ * Order Model Object
+ * This class defines the structure of a Order object and its
+ * have associated attributes.
+ * 
+ * It has Getters and Setters method to get value to the variable and 
+ * to set value to the variables.
+ */
 
 public class Order {
 
+	private int orderId;
 	private int userId;
 	private String paymentStatus;
-	private int totalPrice;
+	private double totalPrice;
 	private LocalDate orderDate;
-	private OrderedProducts orderedProducts;
+	private List<OrderedProduct> orderedProducts; 
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -26,11 +47,11 @@ public class Order {
 		this.paymentStatus = paymentStatus;
 	}
 
-	public int getTotalPrice() {
+	public double getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(int totalPrice) {
+	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
@@ -42,20 +63,27 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public OrderedProducts getOrderedProducts() {
+	public List<OrderedProduct> getOrderedProducts() {
 		return orderedProducts;
 	}
 
-	public void setOrderedProducts(OrderedProducts orderedProducts) {
+	public void setOrderedProducts(List<OrderedProduct> orderedProducts) {
 		this.orderedProducts = orderedProducts;
 	}
 
-	public Order(int userId, String paymentStatus, int totalPrice, LocalDate orderDate, OrderedProducts orderedProducts) {
+	public Order(int userId, double totalPrice, String paymentStatus, LocalDate orderDate, List<OrderedProduct> orderedProducts) {
 		this.userId = userId;
 		this.paymentStatus = paymentStatus;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
 		this.orderedProducts = orderedProducts;
 	}
+
+	// Empty Constructor
+	public Order() {
+		// Default Constructor
+	}
+	
+	
 
 }

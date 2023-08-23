@@ -1,8 +1,14 @@
 package com.fssa.spartansmt.constants;
 
+/*
+ * @author MathankumarNagarajan
+ * 
+ * An interface is holds the constant variables
+ */
 public class ProductConstants {
+	
 	private ProductConstants() {
-//		private constructor
+		// private constructor
 	}
 
 	/*

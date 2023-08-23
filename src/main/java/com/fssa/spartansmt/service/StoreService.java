@@ -8,6 +8,12 @@ import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
 import com.fssa.spartansmt.model.Store;
 import com.fssa.spartansmt.validator.StoreValidator;
 
+/*
+ * @author MathankumarNagarajan
+ * 
+ * A class which holds the service for the Store Model Object
+ * It acts has mediator between validator and DAO class.
+ */
 public class StoreService {
 	
 	/* Add Store Method It should first Validate the Store Object If the Object validator returned true.
@@ -40,7 +46,7 @@ public class StoreService {
 	 *  Get All Store Details Method Directly it Call the StoreDao.
 	 *  Because It Should not have any Parameter to Validate.
 	 */
-	public static List<Store> getAllStoreDetails() throws DAOException {
+	public List<Store> getAllStoreDetails() throws DAOException {
 
 		return StoreDao.getAllStoreDetails();
 

@@ -16,6 +16,14 @@ import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Store;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
+/*
+ * @author MathankumarNagarajan
+ * 
+ * A class which holds the Data access object
+ * It has method with sql queries the methods will do CRUD operations on the store model object
+ *
+ */
+
 public class StoreDao {
 	
 	
@@ -81,7 +89,8 @@ public class StoreDao {
 		try (Connection con = ConnectionUtil.getConnection()) {
 			
 			/*
-			 *  Declaring MySQL Query for Update Store Details as a String And Declared as a final key
+			 *  Declaring MySQL Query for Update Store Details as a String 
+			 *  And Declared as a final key
 			 */
 			final String query = "UPDATE stores SET store_name = ?, category = ?, store_logo = ? WHERE store_id = ?";
 
@@ -220,7 +229,7 @@ public class StoreDao {
 		
 		// Returning a Store Object
 		return st;
-		
+
 	}
 
 }
