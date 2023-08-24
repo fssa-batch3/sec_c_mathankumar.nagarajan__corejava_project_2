@@ -5,11 +5,8 @@ import java.sql.DriverManager;
 
 import com.fssa.spartansmt.logger.Logger;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
 public class ConnectionUtil {
-	
-	
+
 	private ConnectionUtil() {
 		// Default Constructor
 	}
@@ -21,16 +18,9 @@ public class ConnectionUtil {
 		String username;
 		String password;
 
-		if (System.getenv("CI") != null) {
-			url = System.getenv("DATABASE_HOST");
-			username = System.getenv("DATABASE_USERNAME");
-			password = System.getenv("DATABASE_PASSWORD");
-		} else {
-			Dotenv env = Dotenv.load();
-			url = env.get("DATABASE_HOST");
-			username = env.get("DATABASE_USERNAME");
-			password = env.get("DATABASE_PASSWORD");
-		}
+		url = System.getenv("DATABASE_HOST");
+		username = System.getenv("DATABASE_USERNAME");
+		password = System.getenv("DATABASE_PASSWORD");
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

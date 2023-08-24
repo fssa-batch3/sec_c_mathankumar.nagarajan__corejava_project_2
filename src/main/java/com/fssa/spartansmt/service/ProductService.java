@@ -52,13 +52,10 @@ public class ProductService {
 		 * Object is Valid It should send the Product object to the Update Product Dao
 		 * Layer. Otherwise It will throw the Exception.
 		 */
-		if (ProductValidator.validate(product)) {
-
-			if (pv.validateProductId(product.getProductId())) {
-
-				ProductDao.updateProduct(product);
-			}
-
+		if (ProductValidator.validate(product) && pv.validateProductId(product.getProductId())) {
+	
+			ProductDao.updateProduct(product);
+		
 		}
 
 		return true;
@@ -105,17 +102,17 @@ public class ProductService {
 		return pd.getAllProductDetails();
 
 	}
-	
+
 	/*
 	 * Get All Products By Store Id Method It will get the storeId via parameter.
 	 */
-	public List<Product> getAllProductsByStoreId(int storeId) throws DAOException{
-		
+	public List<Product> getAllProductsByStoreId(int storeId) throws DAOException {
+
 		/*
 		 * Created a ProductDao Object.
 		 */
 		ProductDao productDao = new ProductDao();
-		
+
 		/*
 		 * Returning the List of Product Details.
 		 */

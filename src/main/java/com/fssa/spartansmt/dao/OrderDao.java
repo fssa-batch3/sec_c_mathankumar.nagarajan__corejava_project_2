@@ -28,6 +28,9 @@ import com.fssa.spartansmt.util.ConnectionUtil;
 
 public class OrderDao {
 	
+	// Declared a Constant Variable
+	private String ORDER_ID = "order_id";
+	
 	/*
 	 * placeOrder Method will place the order to the Database order table.
 	 */
@@ -180,12 +183,12 @@ public class OrderDao {
 		try {
 			
 			Order order = new Order();
-			order.setOrderId(rs.getInt("order_id"));
+			order.setOrderId(rs.getInt(ORDER_ID));
 			order.setUserId(rs.getInt("user_id"));
 			order.setPaymentStatus(rs.getString("payment_status"));
 			order.setTotalPrice(rs.getDouble("total_price"));
 			order.setOrderDate(rs.getDate("ordered_date").toLocalDate());
-			order.setOrderedProducts(getOrderedProduct(rs.getInt("order_id")));
+			order.setOrderedProducts(getOrderedProduct(rs.getInt(ORDER_ID)));
 			
 			return order;
 		
@@ -210,7 +213,7 @@ public class OrderDao {
 					while(rs.next()) {
 						
 						OrderedProduct orderedProduct = new OrderedProduct();
-						orderedProduct.setOrderId(rs.getInt("order_id"));
+						orderedProduct.setOrderId(rs.getInt(ORDER_ID));
 						orderedProduct.setProductId(rs.getInt("product_id"));
 						orderedProduct.setQuantity(rs.getInt("quantity"));
 						orderedProductList.add(orderedProduct);

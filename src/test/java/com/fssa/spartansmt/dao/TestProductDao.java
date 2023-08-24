@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.logger.Logger;
@@ -26,7 +25,7 @@ class TestProductDao {
 		p1.setStoreId(2);
 		p1.setUploadedDate(LocalDate.now());
 
-		return p1;
+		return p1; 
  
 	}
 	
@@ -113,28 +112,5 @@ class TestProductDao {
 		
 	}
 	
-	@Test
-	void testInvalidUpdateProductId() throws InvalidProductDetailsException, DAOException {
-		
-		try {
-			ProductDao.updateProduct(invalidProduct());
-		}catch(InvalidProductDetailsException ex) {
-			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ID, ex.getMessage());
-		}
-		
-	}
-
-	@Test
-	void testInvalidDelectProductId() throws InvalidProductDetailsException, DAOException {
-		
-		try {
-			ProductDao.deleteProduct(invalidProduct().getProductId());
-		}catch(InvalidProductDetailsException ex) {
-			Assertions.assertEquals(ProductValidatorErrors.INVALID_PRODUCT_ID, ex.getMessage());
-		}
-		
-	}
-
-
 
 }

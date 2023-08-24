@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fssa.spartansmt.exception.DAOException;
-import com.fssa.spartansmt.exception.InvalidProductDetailsException;
 import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 import com.fssa.spartansmt.util.ConnectionUtil;
@@ -67,7 +66,7 @@ public class ProductDao {
 	/*
 	 *  Update Product Details to the Database Table Through the UpdateProduct Method
 	 */
-	public static boolean updateProduct(Product product) throws DAOException, InvalidProductDetailsException {
+	public static boolean updateProduct(Product product) throws DAOException {
 
 		/*
 		 *  Get connection from connection util
@@ -104,7 +103,7 @@ public class ProductDao {
 	 * deleteProduct Method will delete the product object
 	 * in the database product table.
 	 */
-	public static boolean deleteProduct(int productId) throws DAOException, InvalidProductDetailsException {
+	public static boolean deleteProduct(int productId) throws DAOException {
 
 		/*
 		 *  Get Connection From Connection Util

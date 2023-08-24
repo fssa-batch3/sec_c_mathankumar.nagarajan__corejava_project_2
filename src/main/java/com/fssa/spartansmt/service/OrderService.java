@@ -1,5 +1,6 @@
 package com.fssa.spartansmt.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.fssa.spartansmt.dao.OrderDao;
@@ -38,7 +39,7 @@ public class OrderService {
 		}catch(InvalidOrderDetailsException ex) {
 			throw new InvalidOrderDetailsException(ex.getMessage());
 		}
-		return null;
+		return Collections.emptyList();
 
 	}
 	
