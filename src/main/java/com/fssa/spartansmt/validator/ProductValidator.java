@@ -83,7 +83,7 @@ public class ProductValidator {
 		 * Product Price Validation If the Product Price is less then 900 It will throw
 		 * the Exception.
 		 */
-		if (price < ProductConstants.MINIMUM_PRICE_PRODUCT) {
+		if (price <= ProductConstants.MINIMUM_PRICE_PRODUCT) {
 			throw new InvalidProductDetailsException(ProductValidatorErrors.INVALID_PRODUCT_PRICE);
 		}
 

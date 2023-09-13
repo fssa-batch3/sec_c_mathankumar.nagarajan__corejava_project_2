@@ -27,7 +27,7 @@ class TestProductValidator {
 	// Invalid Product Object
 	static Product invalidProduct() {
 		
-		Product invalidProduct = new Product(null, 500, null, 0, LocalDate.parse("2018-07-22"));
+		Product invalidProduct = new Product(null, 0, null, 0, LocalDate.parse("2018-07-22"));
 		return invalidProduct;
 
 	}

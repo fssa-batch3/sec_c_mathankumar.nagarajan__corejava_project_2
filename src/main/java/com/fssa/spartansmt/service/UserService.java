@@ -63,4 +63,18 @@ public class UserService {
 		return true;
 	}
 	
+	
+	
+	public User getUserByEmail(String email) throws DAOException, InvalidUserException {
+	
+		User user = null;
+		
+		if(new UserValidator().validateEmail(email)) {
+			user =  new UserDao().getUserByEmail(email);
+		}
+		
+		return user;
+		
+	}
+	
 }

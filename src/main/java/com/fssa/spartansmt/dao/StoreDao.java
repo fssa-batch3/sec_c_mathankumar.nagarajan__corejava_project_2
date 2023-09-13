@@ -53,12 +53,15 @@ public class StoreDao {
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 				
 				pst.setString(1, store.getName());
-				pst.setString(2, store.getCategory());
+				pst.setString(2, store.getCategory()); 
 				pst.setString(3, store.getStoreLogoLink());
 				pst.executeUpdate();
 			}
 
 		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+			
 			throw new DAOException("Error for Adding Store Details");
 		}
 
@@ -75,13 +78,7 @@ public class StoreDao {
 	 *  Update Store Details Method 
 	 */
 	public static boolean updateStore(Store store) throws DAOException, InvalidStoreDetailsException {
-		
-		/*
-		 *  Validating Store ID 
-		 */
-		if(store.getId() <= StoreConstants.INVALID_MAXIMUM_STORE_ID) {
-			throw new InvalidStoreDetailsException(StoreValidatorErrors.INVALID_STORE_ID);
-		}
+
 		
 		/*
 		 *  Get Connection From Connection Util

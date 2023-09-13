@@ -45,7 +45,7 @@ public class ProductDao {
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setString(1, product.getProductTitle());
-				pst.setDouble(2, product.getProductPrice());
+				pst.setDouble(2, product.getProductPrice()); 
 				pst.setString(3, product.getProductImage());
 				pst.setInt(4, product.getStoreId());
 				pst.setDate(5, Date.valueOf(product.getUploadedDate()));

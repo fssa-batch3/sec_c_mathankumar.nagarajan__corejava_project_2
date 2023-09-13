@@ -17,5 +17,7 @@ public class UserValidatorErrors {
 	public static final String INVALID_USER_PASSWORD = "Invalid User Password.";
 	
 	public static final String INVALID_USER_ID = "Invalid User Id."; 
+	
+	public static final String INVALID_MISMATCHED_PASSWORD = "create password and confirm password should be equal";
 
 }

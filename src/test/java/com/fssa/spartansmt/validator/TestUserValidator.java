@@ -15,7 +15,7 @@ class TestUserValidator {
 		u1.setFirstName("Mathankumar");
 		u1.setLastName("G N");
 		u1.setEmail("kumarmadhan432@gmail.com");
-		u1.setPhoneNumber("8940169934");
+		u1.setPhoneNumber(8940169934l);
 		u1.setPassword("Mathan@123");
 		return u1;
 	}
@@ -25,8 +25,8 @@ class TestUserValidator {
 		u1.setFirstName(null);
 		u1.setLastName(null);
 		u1.setEmail(null);
-		u1.setPhoneNumber(null);
 		u1.setPassword(null);
+		u1.setPhoneNumber(0);
 		return u1;
 	}
 	
@@ -35,7 +35,6 @@ class TestUserValidator {
 		u1.setFirstName("");
 		u1.setLastName("");
 		u1.setEmail("");
-		u1.setPhoneNumber("");
 		u1.setPassword("");
 		return u1;
 	}
@@ -204,30 +203,6 @@ class TestUserValidator {
 		}
 	}
 	
-	// Invalid Mobile Number Length
-	
-	@Test
-	void testInvalidPhoneNumberLength() {
-		try {
-			userValidator().validatePhoneNumber("7892324");
-			Assertions.fail("Test Invalid Phone Number Method is Failded");
-		}catch(InvalidUserException ex) {
-			Assertions.assertEquals(UserValidatorErrors.INVALID_USER_PHONE_NUMBER, ex.getMessage());
-		}
-	}
-	
-	// Invalid Mobile Number
-	
-	@Test
-	void testInvalidPhoneNumber() {
-		try {
-			userValidator().validatePhoneNumber("1234567890");
-			Assertions.fail("Test Invalid Phone Number Method is Failded");
-		}catch(InvalidUserException ex) {
-			Assertions.assertEquals(UserValidatorErrors.INVALID_USER_PHONE_NUMBER, ex.getMessage());
-		}
-	}
-	
 	
 	// Invalid Email Address
 	
@@ -265,4 +240,25 @@ class TestUserValidator {
 		}
 	}
 	
+	// Invalid User Phone Number
+	@Test
+	void testInvaliPhoneNumber() {
+		try {
+			userValidator().validatePhoneNumber(1234567890);
+			Assertions.fail("Test Invalid Phone Number Method Failded");
+		}catch(InvalidUserException ex) {
+			Assertions.assertEquals(UserValidatorErrors.INVALID_USER_PHONE_NUMBER, ex.getMessage());
+		}
+	}
+	
+	// invalid phone number length
+	@Test
+	void testInvaliPhoneNumberLength() {
+		try {
+			userValidator().validatePhoneNumber(123456780);
+			Assertions.fail("Test Invalid Phone Number Method Failded");
+		}catch(InvalidUserException ex) {
+			Assertions.assertEquals(UserValidatorErrors.INVALID_USER_PHONE_NUMBER, ex.getMessage());
+		}
+	}
 }

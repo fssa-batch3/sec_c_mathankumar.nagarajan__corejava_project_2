@@ -14,7 +14,7 @@ import com.fssa.spartansmt.validator.StoreValidator;
  * A class which holds the service for the Store Model Object
  * It acts has mediator between validator and DAO class.
  */
-public class StoreService {
+public class StoreService { 
 	
 	/* Add Store Method It should first Validate the Store Object If the Object validator returned true.
 	 * It should send the Object to StoreDao Class Otherwise it will throw the Exception
@@ -34,7 +34,9 @@ public class StoreService {
 	*/
 	public static boolean updateStore(Store store) throws DAOException, InvalidStoreDetailsException {
 
-		if (StoreValidator.validate(store)) {
+		StoreValidator storeValidator = new StoreValidator();
+		
+		if (StoreValidator.validate(store) && storeValidator.validateId(store.getId())) {
 			StoreDao.updateStore(store);
 		}
 
@@ -46,7 +48,7 @@ public class StoreService {
 	 *  Get All Store Details Method Directly it Call the StoreDao.
 	 *  Because It Should not have any Parameter to Validate.
 	 */
-	public List<Store> getAllStoreDetails() throws DAOException {
+	public static List<Store> getAllStoreDetails() throws DAOException {
 
 		return StoreDao.getAllStoreDetails();
 

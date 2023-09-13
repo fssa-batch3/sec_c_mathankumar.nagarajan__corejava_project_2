@@ -17,7 +17,7 @@ class TestUserDao {
 		ud.setUserId(5);
 		ud.setFirstName("Mathan");
 		ud.setLastName("GN");
-		ud.setPhoneNumber("8940169934");
+		ud.setPhoneNumber(8940169934l);
 		ud.setEmail("junittest@gmail.com");
 		ud.setPassword("Junit@123");
 		return ud;
@@ -31,7 +31,7 @@ class TestUserDao {
 		ud.setUserId(0);
 		ud.setFirstName(null);
 		ud.setLastName(null);
-		ud.setPhoneNumber(null);
+		ud.setPhoneNumber(0);
 		ud.setEmail(null);
 		ud.setPassword(null);
 		return ud;

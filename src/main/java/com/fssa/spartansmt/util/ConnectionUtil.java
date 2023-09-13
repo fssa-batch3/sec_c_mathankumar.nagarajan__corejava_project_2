@@ -22,6 +22,7 @@ public class ConnectionUtil {
 		username = System.getenv("DATABASE_USERNAME");
 		password = System.getenv("DATABASE_PASSWORD");
 
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, username, password);
@@ -33,4 +34,8 @@ public class ConnectionUtil {
 		return con;
 	}
 
+	public static void main(String[] args) {
+		ConnectionUtil.getConnection();
+	}
+	
 }

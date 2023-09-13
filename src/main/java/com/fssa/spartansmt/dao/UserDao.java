@@ -40,7 +40,7 @@ public class UserDao {
 				pst.setString(1, user.getFirstName());
 				pst.setString(2, user.getLastName());
 				pst.setString(3, user.getEmail());
-				pst.setString(4, user.getPhoneNumber());
+				pst.setLong(4, user.getPhoneNumber());
 				pst.setString(5, user.getPassword());
 				pst.executeUpdate();
 
@@ -76,7 +76,7 @@ public class UserDao {
 
 				pst.setString(1, user.getFirstName());
 				pst.setString(2, user.getLastName());
-				pst.setString(3, user.getPhoneNumber());
+				pst.setLong(3, user.getPhoneNumber());
 				pst.setString(4, user.getPassword());
 				pst.setInt(5, user.getUserId());
 				pst.executeUpdate();
@@ -133,11 +133,47 @@ public class UserDao {
 			}
 
 		} catch (SQLException ex) {
-			throw new DAOException("Error for fetching Product Details");
+			throw new DAOException("Error for fetching All User Details");
 		}
 
 		return true;
 
+	}
+	
+	
+	public User getUserByEmail(String email) throws DAOException {
+		
+		User user = new User();
+		
+		try(Connection con = ConnectionUtil.getConnection()){
+			
+			final String query = "select user_id, first_name, last_name, email, password, phone_number from user where email = ?";
+			try(PreparedStatement ps = con.prepareStatement(query)){
+				
+				ps.setString(1, email);
+				
+				try(ResultSet rs = ps.executeQuery()){
+					
+					if(rs.next()) {
+						
+						user.setFirstName(rs.getString("first_name"));
+						user.setLastName(rs.getString("last_name"));
+						user.setEmail(rs.getString("email"));
+						user.setPassword(rs.getString("password"));
+						user.setPhoneNumber(rs.getLong("phone_number"));
+						user.setUserId(rs.getInt("user_id"));
+												
+					}
+					
+				}
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new DAOException("Error for fetching User Details");
+		}
+		return user;
+		
 	}
 
 }
