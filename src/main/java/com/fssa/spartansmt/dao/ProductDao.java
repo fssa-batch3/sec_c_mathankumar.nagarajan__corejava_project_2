@@ -263,8 +263,36 @@ public class ProductDao {
 				// Returning a product list (ArrayList).
 				return productList;
 		
+	}
+	
+	
+	public Product getProductById(int productId) throws DAOException {
 		
+		Product product = new Product();
 		
+		try(Connection con = ConnectionUtil.getConnection()){
+			
+			final String query = "SELECT product_id, product_title, product_price, product_image, uploaded_date, store_id FROM products WHERE product_id = ?";
+			try(PreparedStatement pst = con.prepareStatement(query)){
+				
+				pst.setInt(1, productId);
+				try(ResultSet rs = pst.executeQuery()){
+					
+					if(rs.next()) {
+						
+						product = createProductFromResultSet(rs);
+						
+					}
+					
+				}
+				
+			}
+			
+		}catch (SQLException e) {
+			throw new DAOException("Error for Get Product By Id Method");
+		}
+		
+		return product;
 	}
 	
 	

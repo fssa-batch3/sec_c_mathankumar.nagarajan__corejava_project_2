@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
+import com.fssa.spartansmt.exception.ServiceException;
 import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 import com.fssa.spartansmt.model.Store;
@@ -92,6 +93,18 @@ class TestProductService {
 			}
 		} catch (DAOException ex) {
 			fail("Get Product Detials Methos Is Failded");
+		}
+	}
+	
+	
+	@Test
+	void testValidGetProductById() throws InvalidProductDetailsException, DAOException {
+		ProductService productSer = new ProductService();
+		try {
+			Product product = productSer.getProductById(demoProduct().getProductId());
+			Logger.info(product);
+		}catch(ServiceException e) {
+			fail("Get Product By Id Method Is Failded");
 		}
 	}
 

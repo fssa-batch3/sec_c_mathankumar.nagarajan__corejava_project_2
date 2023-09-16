@@ -5,6 +5,7 @@ import java.util.List;
 import com.fssa.spartansmt.dao.ProductDao;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidProductDetailsException;
+import com.fssa.spartansmt.exception.ServiceException;
 import com.fssa.spartansmt.model.Product;
 import com.fssa.spartansmt.validator.ProductValidator;
 
@@ -117,6 +118,21 @@ public class ProductService {
 		 * Returning the List of Product Details.
 		 */
 		return productDao.getAllProductByStoreId(storeId);
+	}
+	
+	public Product getProductById(int productId) throws InvalidProductDetailsException, DAOException, ServiceException {
+		
+		Product product = new Product();
+		
+		try {
+			if(new ProductValidator().validateProductId(productId)) {
+				ProductDao productDao = new ProductDao();
+				product = productDao.getProductById(productId);
+			}
+		}catch(InvalidProductDetailsException | DAOException e) {
+			throw  new ServiceException(e.getMessage());
+		}
+		return product;
 	}
 
 }

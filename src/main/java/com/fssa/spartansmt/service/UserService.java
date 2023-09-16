@@ -1,8 +1,11 @@
 package com.fssa.spartansmt.service;
 
+import javax.sql.rowset.serial.SerialException;
+
 import com.fssa.spartansmt.dao.UserDao;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
+import com.fssa.spartansmt.exception.ServiceException;
 import com.fssa.spartansmt.model.User;
 import com.fssa.spartansmt.validator.UserValidator;
 
@@ -14,67 +17,81 @@ import com.fssa.spartansmt.validator.UserValidator;
  * to add or update or delete to the database.
  */
 
-
 public class UserService {
-	
+
 	/*
-	 * Add User Service Method 
+	 * Add User Service Method
 	 */
-	public boolean addUser(User user) throws InvalidUserException, DAOException {
-		
+	public boolean addUser(User user) throws InvalidUserException, DAOException, ServiceException {
+
 		/*
-		 * Passing the User Object in the User Validator Method. This Method 
-		 * Validate the User Object if the User Object is valid it should send the 
-		 * User object to the Add User Dao Layer Otherwise it will throw the 
-		 * Exception.
+		 * Passing the User Object in the User Validator Method. This Method Validate
+		 * the User Object if the User Object is valid it should send the User object to
+		 * the Add User Dao Layer Otherwise it will throw the Exception.
 		 */
-		if(new UserValidator().validate(user)) {
-			new UserDao().addUser(user);
+
+		try {
+			if (new UserValidator().validate(user)) {
+				new UserDao().addUser(user);
+			}
+		} catch (InvalidUserException | DAOException e) {
+			throw new ServiceException(e.getMessage());
 		}
 		return true;
-		
+
 	}
-	
+
 	/*
 	 * Update User Service Method
 	 */
 	public boolean updateUser(User user) throws InvalidUserException, DAOException {
-		
+
 		/*
-		 * Here Validating a User Object Through the user Validator If the user 
-		 * Object is valid It should send the User Object to the Update User Dao
-		 * Layer. Otherwise It will throw the Exception.
+		 * Here Validating a User Object Through the user Validator If the user Object
+		 * is valid It should send the User Object to the Update User Dao Layer.
+		 * Otherwise It will throw the Exception.
 		 */
-		if(new UserValidator().validate(user)) {
+		if (new UserValidator().validate(user)) {
 			new UserDao().updateUser(user);
 		}
 		return true;
-		
+
 	}
-	
-	
+
 	/*
-	 * Get All User Details Method  It is not have any parameter to validate
-	 * So this Method Dirtily call the Dao Layer Method.
+	 * Get All User Details Method It is not have any parameter to validate So this
+	 * Method Dirtily call the Dao Layer Method.
 	 */
 	public boolean getAllUserDetails() throws DAOException {
 
 		new UserDao().getAllUserDetails();
 		return true;
 	}
-	
-	
-	
-	public User getUserByEmail(String email) throws DAOException, InvalidUserException {
-	
+
+	public User getUserByEmail(String email) throws DAOException, InvalidUserException, ServiceException {
+
 		User user = null;
-		
-		if(new UserValidator().validateEmail(email)) {
-			user =  new UserDao().getUserByEmail(email);
+		try {
+			if (new UserValidator().validateEmail(email)) {
+				user = new UserDao().getUserByEmail(email);
+			}
+		} catch (InvalidUserException | DAOException e) {
+			throw new ServiceException(e.getMessage());
 		}
-		
 		return user;
+
+	}
+
+	public boolean login(String email, String password) throws InvalidUserException, ServiceException {
+
+		try {
+			new UserValidator().validateEmail(email);
+			new UserValidator().validatePassword(password);
+		}catch(InvalidUserException e) {
+			throw new ServiceException(e.getMessage());
+		}
+		return true;
 		
 	}
-	
+
 }
