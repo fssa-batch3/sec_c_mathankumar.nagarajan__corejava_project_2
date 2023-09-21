@@ -18,10 +18,16 @@ public class Order {
 
 	private int orderId;
 	private int userId;
-	private String paymentStatus;
+	private String paymentOption;
 	private double totalPrice;
 	private LocalDate orderDate;
 	private List<OrderedProduct> orderedProducts; 
+	
+	// Address Details
+	private String address;
+	private String country;
+	private String state;
+	private int zipCode;
 
 	public int getOrderId() {
 		return orderId;
@@ -39,12 +45,12 @@ public class Order {
 		this.userId = userId;
 	}
 
-	public String getPaymentStatus() {
-		return paymentStatus;
+	public String getPaymentOption() {
+		return paymentOption;
 	}
 
-	public void setPaymentStatus(String paymentStatus) {
-		this.paymentStatus = paymentStatus;
+	public void setPaymentOption(String paymentOption) {
+		this.paymentOption = paymentOption;
 	}
 
 	public double getTotalPrice() {
@@ -71,12 +77,62 @@ public class Order {
 		this.orderedProducts = orderedProducts;
 	}
 
-	public Order(int userId, double totalPrice, String paymentStatus, LocalDate orderDate, List<OrderedProduct> orderedProducts) {
+	
+	// Address Getters and Setters
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public Order(int userId, double totalPrice, String paymentOption, LocalDate orderDate, List<OrderedProduct> orderedProducts) {
 		this.userId = userId;
-		this.paymentStatus = paymentStatus;
+		this.paymentOption = paymentOption;
 		this.totalPrice = totalPrice;
 		this.orderDate = orderDate;
 		this.orderedProducts = orderedProducts;
+	}
+
+	
+	
+	public Order(int userId, String paymentOption, double totalPrice, LocalDate orderDate,
+			List<OrderedProduct> orderedProducts, String address, String country, String state, int zipCode) {
+		super();
+		this.userId = userId;
+		this.paymentOption = paymentOption;
+		this.totalPrice = totalPrice;
+		this.orderDate = orderDate;
+		this.orderedProducts = orderedProducts;
+		this.address = address;
+		this.country = country;
+		this.state = state;
+		this.zipCode = zipCode;
 	}
 
 	// Empty Constructor

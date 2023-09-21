@@ -15,7 +15,7 @@ import com.fssa.spartansmt.model.Order;
 import com.fssa.spartansmt.model.OrderedProduct;
 
 class TestOrderValidator {
-
+ 
 	// Valid Order Details
 	public static Order validOrderDetails() {
 
@@ -40,7 +40,7 @@ class TestOrderValidator {
 
 		Order order = new Order();
 		order.setUserId(0);
-		order.setPaymentStatus(null);
+		order.setPaymentOption(null);
 		order.setTotalPrice(0);
 		order.setOrderDate(null);
 
@@ -73,7 +73,7 @@ class TestOrderValidator {
 
 	@Test
 	void testValidatePaymentStatue() throws InvalidOrderDetailsException {
-		Assertions.assertTrue(OrderValidator.validatePaymentStatus(validOrderDetails().getPaymentStatus()));
+		Assertions.assertTrue(OrderValidator.validatePaymentStatus(validOrderDetails().getPaymentOption()));
 	}
 
 	@Test
@@ -124,7 +124,7 @@ class TestOrderValidator {
 	@Test
 	void testInvalidOrderPaymentStatus() {
 		try {
-			OrderValidator.validatePaymentStatus(invalidOrderDetatils().getPaymentStatus());
+			OrderValidator.validatePaymentStatus(invalidOrderDetatils().getPaymentOption());
 			Assertions.fail("Test Invalid Order Payment Status Methos Is Failded");
 		} catch (InvalidOrderDetailsException ex) {
 			Assertions.assertEquals(OrderValidatorErrors.INVALID_PAYMENT_STATUS, ex.getMessage());

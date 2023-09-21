@@ -20,4 +20,12 @@ public class UserValidatorErrors {
 	
 	public static final String INVALID_MISMATCHED_PASSWORD = "create password and confirm password should be equal";
 
+	public static final String INVALID_ADDRESS = "Address Can't be Null or Empty";
+	
+	public static final String INVALID_COUNTRY = "Country Can't be Null, Empty or It shour have only Alphabets";
+	
+	public static final String INVALID_STATE = "State Can't be Null, Empty or It shour have only Alphabets";
+	
+	public static final String INVALID_ZIP_CODE = "Zip Code Can't be empty or It will allow only Numbers";
+	
 }

@@ -1,7 +1,7 @@
 package com.fssa.spartansmt.service;
 
-import javax.sql.rowset.serial.SerialException;
 
+import com.fssa.spartansmt.constants.UserConstants;
 import com.fssa.spartansmt.dao.UserDao;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
@@ -51,9 +51,9 @@ public class UserService {
 		 * is valid It should send the User Object to the Update User Dao Layer.
 		 * Otherwise It will throw the Exception.
 		 */
-		if (new UserValidator().validate(user)) {
+		if (new UserValidator().validate(user) && new UserValidator().validateId(user.getUserId()) && new UserValidator().validateAddressDetails(user)) {
 			new UserDao().updateUser(user);
-		}
+		} 
 		return true;
 
 	}
@@ -94,4 +94,22 @@ public class UserService {
 		
 	}
 
+	public int getUserIdUsingEmail(String email) throws ServiceException {
+		
+		int userId = UserConstants.INVALID_USER_ID;
+		
+		try {
+			
+			if(new UserValidator().validateEmail(email)) {
+				userId =  new UserDao().getUserIdUsingEmail(email);
+			}
+			
+		}catch(InvalidUserException | DAOException e) {
+			throw new ServiceException(e.getMessage());
+		}
+		return userId;
+		
+		
+	}
+	
 }

@@ -15,10 +15,14 @@ class TestUserService {
 		User u = new User();
 		u.setUserId(1);
 		u.setEmail("mathan@gmail.com");
-		u.setFirstName("Kumarmathan");
+		u.setFirstName("Mathankumar");
 		u.setLastName("GN");
-		u.setPassword("Demo@123");
+		u.setPassword("Mathan@123");
 		u.setPhoneNumber(8940169934l);
+		u.setAddress("12 chennai");
+		u.setCountry("India");
+		u.setState("Chennai");
+		u.setZipCode(623707);
 		return u;
 	}
 	

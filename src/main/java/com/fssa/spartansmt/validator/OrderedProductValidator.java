@@ -17,7 +17,7 @@ import com.fssa.spartansmt.model.OrderedProduct;
 
 public class OrderedProductValidator {
 	
-	/*
+	/* 
 	 * This Method will Validate the full Ordered Product Object
 	 */
 	public boolean validateOrderedProduct(OrderedProduct orderedProduct) throws InvalidOrderDetailsException {

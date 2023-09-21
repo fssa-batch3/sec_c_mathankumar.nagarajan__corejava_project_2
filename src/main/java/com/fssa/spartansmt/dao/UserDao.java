@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.fssa.spartansmt.constants.UserConstants;
-import com.fssa.spartansmt.errors.ProductValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.logger.Logger;
@@ -30,7 +29,7 @@ public class UserDao {
 			/*
 			 *  Declaring Query as a String and Using final Keyword
 			 */
-			final String query = "INSERT INTO user(first_name, last_name, email, phone_number, password) values ( ?, ?, ?, ?, ? )";
+			final String query = "INSERT INTO user(first_name, last_name, email, phone_number, password, role) values ( ?, ?, ?, ?, ?, ?)";
 
 			/*
 			 *  Created Prepared Statement And It'll Execute Query
@@ -42,7 +41,8 @@ public class UserDao {
 				pst.setString(3, user.getEmail());
 				pst.setLong(4, user.getPhoneNumber());
 				pst.setString(5, user.getPassword());
-				pst.executeUpdate();
+				pst.setString(6, UserConstants.USER);
+				pst.executeUpdate(); 
 
 				Logger.info("User Details Successfully Added To The Database");
 				
@@ -59,26 +59,24 @@ public class UserDao {
 	public boolean updateUser(User user) throws DAOException, InvalidUserException {
 
 		/*
-		 *  Validating Store ID if the user id is Zero or Less then Zero it will throw 
-		 *  the Exception Otherwise next step codes will execute.
-		 */
-		if (user.getUserId() <= UserConstants.INVALID_USER_ID) {
-			throw new InvalidUserException(ProductValidatorErrors.INVALID_PRODUCT_ID);
-		}
-
-		/*
 		 *  Get connection from connection util
 		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			final String query = "UPDATE user SET first_name = ?, last_name = ?, phone_number = ?, password = ? WHERE user_id = ?";
+			final String query = "UPDATE user SET first_name = ?, last_name = ?, phone_number = ?, password = ?, address = ?, country = ?, state = ?, zipcode = ? WHERE user_id = ?;";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setString(1, user.getFirstName());
 				pst.setString(2, user.getLastName());
 				pst.setLong(3, user.getPhoneNumber());
 				pst.setString(4, user.getPassword());
-				pst.setInt(5, user.getUserId());
+				
+				pst.setString(5, user.getAddress());
+				pst.setString(6, user.getCountry());
+				pst.setString(7, user.getState());
+				pst.setInt(8, user.getZipCode());
+				
+				pst.setInt(9, user.getUserId());
 				pst.executeUpdate();
 
 				Logger.info("User Details Updated Successfully");
@@ -147,7 +145,7 @@ public class UserDao {
 		
 		try(Connection con = ConnectionUtil.getConnection()){
 			
-			final String query = "select user_id, first_name, last_name, email, password, phone_number from user where email = ?";
+			final String query = "select user_id, first_name, last_name, email, password, phone_number, address, country, state, zipcode from user where email = ?";
 			try(PreparedStatement ps = con.prepareStatement(query)){
 				
 				ps.setString(1, email);
@@ -162,7 +160,11 @@ public class UserDao {
 						user.setPassword(rs.getString("password"));
 						user.setPhoneNumber(rs.getLong("phone_number"));
 						user.setUserId(rs.getInt("user_id"));
-												
+						
+						user.setAddress(rs.getString("address"));
+						user.setCountry(rs.getString("country"));
+						user.setState(rs.getString("state"));
+						user.setZipCode(rs.getInt("zipcode"));
 					}
 					
 				}
@@ -173,6 +175,37 @@ public class UserDao {
 			throw new DAOException("Error for fetching User Details");
 		}
 		return user;
+		
+	}
+	
+	public int getUserIdUsingEmail(String email) throws DAOException {
+		
+		int userId = 0;
+		
+		try(Connection con = ConnectionUtil.getConnection()){
+			
+			final String query = "select user_id from user where email = ?";
+			try(PreparedStatement pst = con.prepareStatement(query)){
+				
+				pst.setInt(1, userId);
+				
+				try(ResultSet rs = pst.executeQuery()){
+					
+					if(rs.next()) {
+						
+						userId = rs.getInt("user_id");
+						return userId;
+					}
+					
+				}
+				
+			}
+			
+		}catch(SQLException e) {
+			throw new DAOException("Get User ID By User Email Method Is Failded");
+		}
+		
+		return userId;
 		
 	}
 

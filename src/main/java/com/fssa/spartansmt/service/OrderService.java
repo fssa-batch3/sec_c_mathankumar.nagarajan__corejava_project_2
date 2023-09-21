@@ -6,10 +6,13 @@ import java.util.List;
 import com.fssa.spartansmt.dao.OrderDao;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidOrderDetailsException;
+import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.model.Order;
+import com.fssa.spartansmt.model.User;
 import com.fssa.spartansmt.validator.OrderValidator;
+import com.fssa.spartansmt.validator.UserValidator;
 
-/*
+/* 
  * @author MathankumarNagarajan
  * 
  * A class which holds the services for order model object
@@ -18,9 +21,11 @@ import com.fssa.spartansmt.validator.OrderValidator;
 
 public class OrderService {
 
-	public boolean placeOrder(Order order) throws DAOException, InvalidOrderDetailsException {
+	public boolean placeOrder(Order order) throws DAOException, InvalidOrderDetailsException, InvalidUserException {
 		OrderValidator orderValidator = new OrderValidator();
-		if (orderValidator.validateOrder(order)) {
+		UserValidator userVali = new UserValidator();
+		User user = new User(order.getAddress(), order.getCountry(), order.getState(), order.getZipCode());
+		if (orderValidator.validateOrder(order) && userVali.validateAddressDetails(user)) {
 			OrderDao orderDao = new OrderDao();
 			orderDao.placeOrder(order);
 		}

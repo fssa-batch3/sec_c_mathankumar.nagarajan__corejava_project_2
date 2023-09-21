@@ -19,7 +19,7 @@ import com.fssa.spartansmt.model.OrderedProduct;
  */
 
 public class OrderValidator {
-
+ 
 	/*
 	 * Validate Order Method is Validate The full Order Object.
 	 */
@@ -39,7 +39,7 @@ public class OrderValidator {
 		validateTotalPrice(order.getTotalPrice());
 
 		// Invoked Validate Payment Status Method
-		validatePaymentStatus(order.getPaymentStatus());
+		validatePaymentStatus(order.getPaymentOption());
 
 		// Invoked Validate Order Date Method
 		validateOrderDate(order.getOrderDate());

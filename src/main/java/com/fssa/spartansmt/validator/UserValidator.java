@@ -60,6 +60,25 @@ public class UserValidator {
 
 	}
 
+	public boolean validateAddressDetails(User user) throws InvalidUserException {
+		
+		if(user == null) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_NULL);
+		}
+		
+		validateAddress(user.getAddress());
+		
+		validateCountry(user.getCountry());
+		
+		validateState(user.getState());
+		
+		validateZipCode(user.getZipCode());
+		
+		return true;
+		
+	}
+	
+	
 	/*
 	 * This Method Validate the User First Name
 	 */
@@ -194,6 +213,70 @@ public class UserValidator {
 
 		return true;
 	}
+
+	public boolean validateAddress(String address) throws InvalidUserException {
+
+		if (address == null || "".equals(address.trim())) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_ADDRESS);
+		}
+
+		return true;
+
+	}
+
+	public boolean validateCountry(String country) throws InvalidUserException {
+
+		if (country == null || "".equals(country.trim())) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_COUNTRY);
+		}
+		
+		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_STRING_PATTERN, country);
+
+		if (!isMatch) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_COUNTRY);
+		}
+
+		return true;
+
+	}
+	
+	public boolean validateState(String state) throws InvalidUserException {
+
+		if (state == null || "".equals(state.trim())) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_STATE);
+		}
+		
+		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_STRING_PATTERN, state);
+
+		if (!isMatch) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_STATE);
+		}
+
+		return true;
+
+	}
+	
+	public boolean validateZipCode(int zipCode) throws InvalidUserException {
+		
+		String strZipCode = Integer.toString(zipCode);
+		System.out.println(strZipCode);
+		
+		if (strZipCode == null || "".equals(strZipCode.trim()) || strZipCode.length() < UserConstants.ZIP_CODE_LENGTH) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_ZIP_CODE);
+		}
+
+		
+		boolean isMatch = Pattern.matches(UserRegexPattern.REGEX_ZIPCODE_PATTERN, strZipCode);
+
+		if (!isMatch) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_ZIP_CODE);
+		}
+
+		return true;
+				
+		
+	}
+
 	
 	
 
