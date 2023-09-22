@@ -20,6 +20,7 @@ private UserConstants() {
 	public static final int INVALID_USER_ID = 0;
 	
 	
+	
 	public static final String USER = "USER";
 	
 	public static final String ADMIN = "ADMIN";

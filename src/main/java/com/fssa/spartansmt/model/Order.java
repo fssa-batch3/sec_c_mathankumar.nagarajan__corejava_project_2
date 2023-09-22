@@ -139,6 +139,14 @@ public class Order {
 	public Order() {
 		// Default Constructor
 	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", userId=" + userId + ", paymentOption=" + paymentOption + ", totalPrice="
+				+ totalPrice + ", orderDate=" + orderDate + ", orderedProducts=" + orderedProducts + ", address="
+				+ address + ", country=" + country + ", state=" + state + ", zipCode=" + zipCode + "]";
+	}
+	
 	
 	
 

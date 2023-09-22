@@ -18,9 +18,9 @@ public class ConnectionUtil {
 		String username;
 		String password;
 
-		url = System.getenv("DATABASE_HOST");
-		username = System.getenv("DATABASE_USERNAME");
-		password = System.getenv("DATABASE_PASSWORD");
+		url = System.getenv("DATABASE_HOST1"); 
+		username = System.getenv("DATABASE_USERNAME1");
+		password = System.getenv("DATABASE_PASSWORD1");
 
 
 		try {

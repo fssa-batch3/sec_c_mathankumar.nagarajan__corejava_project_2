@@ -48,4 +48,20 @@ public class OrderService {
 
 	}
 	
+	
+	public Order getOrderUsingOrderId(int orderId) throws InvalidOrderDetailsException, DAOException {
+
+		Order order = new Order();
+		try {
+			if (OrderValidator.validateOrderId(orderId)) {
+				OrderDao orderDao = new OrderDao();
+				order = orderDao.getOrderUsingOrderId(orderId);
+			}
+		}catch(InvalidOrderDetailsException ex) {
+			throw new InvalidOrderDetailsException(ex.getMessage());
+		}
+		return order;
+
+	}
+	
 }

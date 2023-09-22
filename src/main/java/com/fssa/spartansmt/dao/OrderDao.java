@@ -26,7 +26,7 @@ import com.fssa.spartansmt.util.ConnectionUtil;
 
 public class OrderDao {
 
-	// Declared a Constant Variable
+	// Declared a Constant Variable 
 	private String ORDER_ID = "order_id";
 
 	/*
@@ -227,6 +227,37 @@ public class OrderDao {
 		}
 
 		return orderedProductList;
+
+	}
+	
+	
+	public Order getOrderUsingOrderId(int orderId) throws DAOException {
+
+		Order order = new Order();
+
+		try (Connection con = ConnectionUtil.getConnection()) {
+
+			final String query = "select * from orders where order_id = ?";
+			try (PreparedStatement st = con.prepareStatement(query)) {
+				st.setInt(1, orderId);
+				try (ResultSet rs = st.executeQuery()) {
+
+					if(rs.next()) {
+
+						order = createOrderFromResultSet(rs);
+
+					}
+
+				}
+
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			throw new DAOException("Get All Orders Using Order Id Method Is Failded");
+		}
+
+		return order;
 
 	}
 

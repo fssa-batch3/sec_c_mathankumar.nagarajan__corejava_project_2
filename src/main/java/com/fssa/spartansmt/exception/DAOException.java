@@ -9,4 +9,7 @@ public class DAOException extends Exception {
 		super(msg);
 	}
 
+	public DAOException(Throwable ex) {
+		super(ex);
+	}
 }

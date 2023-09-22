@@ -38,6 +38,15 @@ class TestStoreService {
 		
 	}
 	
+//	@Test
+//	void testadd() throws DAOException, InvalidStoreDetailsException {
+//		StoreService ss = new StoreService();
+//		List<Store> storelist = listStore();
+//		for(Store store:storelist) {
+//			Assertions.assertTrue(ss.addStore(store));
+//		}
+//	}
+	
 	
 	@Test
 	void testValidateAddStore() throws DAOException, InvalidStoreDetailsException {
@@ -60,7 +69,7 @@ class TestStoreService {
 	@Test
 	void testValidateDeleteStore() throws InvalidStoreDetailsException, DAOException {
 		Store s2 = new Store();
-		s2.setId(13);
+		s2.setId(21);
 		Assertions.assertTrue(StoreService.deleteStore(s2.getId()));
 	}
 	

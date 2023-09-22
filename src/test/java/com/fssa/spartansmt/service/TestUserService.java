@@ -19,9 +19,9 @@ class TestUserService {
 		u.setLastName("GN");
 		u.setPassword("Mathan@123");
 		u.setPhoneNumber(8940169934l);
-		u.setAddress("12 chennai");
+		u.setAddress("1/74 jeevanagar, emaneshwaran, paramakudi.");
 		u.setCountry("India");
-		u.setState("Chennai");
+		u.setState("Tamilnadu");
 		u.setZipCode(623707);
 		return u;
 	}

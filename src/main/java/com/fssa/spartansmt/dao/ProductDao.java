@@ -52,11 +52,11 @@ public class ProductDao {
 				pst.executeUpdate();
 
 				Logger.info("Product Added Successfully To The Database");
-				
+				 
 			}
 
 		} catch (SQLException ex) {
-			throw new DAOException("Add Product to the Database Method is Failded");
+			throw new DAOException(ex);
 		}
 
 		return true;

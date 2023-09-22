@@ -84,7 +84,7 @@ public class UserService {
 
 	public boolean login(String email, String password) throws InvalidUserException, ServiceException {
 
-		try {
+		try { 
 			new UserValidator().validateEmail(email);
 			new UserValidator().validatePassword(password);
 		}catch(InvalidUserException e) {

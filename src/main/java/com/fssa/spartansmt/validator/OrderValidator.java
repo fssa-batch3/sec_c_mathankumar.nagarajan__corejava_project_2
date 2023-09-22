@@ -176,5 +176,20 @@ public class OrderValidator {
 		return true;
 
 	}
+	
+	public static boolean validateOrderId(int orderId) throws InvalidOrderDetailsException {
+
+		/*
+		 * Here is validating a User Id Is Valid or invalid If the User id Is Zero or
+		 * less then Zero it will throw the Exception otherwise it will true.
+		 */
+		if (orderId <= OrderConstants.INVALID_ORDER_ID) {
+			throw new InvalidOrderDetailsException(OrderValidatorErrors.INVALID_ORDER_ID);
+		}
+
+		// Return True Statement
+		return true;
+
+	}
 
 }
