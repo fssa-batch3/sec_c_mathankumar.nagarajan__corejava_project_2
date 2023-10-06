@@ -136,9 +136,25 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", phoneNumber=" + phoneNumber + ", password=" + password + "]";
+				+ ", phoneNumber=" + phoneNumber + ", password=" + password + ", role= "+ role + "]";
 	}
+
 	
 	
+	
+	// this constructor used to update the user object
+	public User(String firstName, String lastName, String email, long phoneNumber, String address, String country,
+			String state, int zipCode, int userId) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.country = country;
+		this.state = state;
+		this.zipCode = zipCode;
+		this.userId = userId;
+	}
 
 }

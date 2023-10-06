@@ -173,7 +173,7 @@ public class StoreDao {
 			/*
 			 *  Get All Store Details from Database. Declared Query as a String and Declared final keyword.
 			 */
-			final String query = "select * from stores";
+			final String query = "select store_id, store_name, category, store_logo from stores";
 			
 			/*
 			 *  Connection Util Class CreateStatement Method Assigned by Statement Interface

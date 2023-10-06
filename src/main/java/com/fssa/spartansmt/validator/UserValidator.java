@@ -1,5 +1,8 @@
 package com.fssa.spartansmt.validator;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Pattern;
 
 import com.fssa.spartansmt.constants.UserConstants;
@@ -50,6 +53,14 @@ public class UserValidator {
 		 * Validate Password Method
 		 */
 		validatePassword(user.getPassword());
+		
+		
+		/*
+		 * Here is converting the user given password to hash password and returning the
+		 * hash password to the validate method. That method will set the hash password
+		 * to the same user object.
+		 */
+		user.setPassword(hashPassword(user.getPassword()));
 
 		/*
 		 * If the all Method's returned true the validate should return true. Otherwise
@@ -60,6 +71,10 @@ public class UserValidator {
 
 	}
 
+	/*
+	 * This method is used to validate the User Address Details It is used to 
+	 * the Order Module to validate Shipping Address.
+	 */
 	public boolean validateAddressDetails(User user) throws InvalidUserException {
 		
 		if(user == null) {
@@ -73,6 +88,39 @@ public class UserValidator {
 		validateState(user.getState());
 		
 		validateZipCode(user.getZipCode());
+		
+		return true;
+		
+	}
+	
+	public boolean validateUpdateUserObj(User user) throws InvalidUserException {
+		
+		/*
+		 * If the User Object is Null It should the Exception.
+		 */
+		if (user == null) {
+			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_NULL);
+		}
+
+		/*
+		 * Invoked Validate First Name Method
+		 */
+		validateFirstName(user.getFirstName());
+
+		/*
+		 * Invoked Validate Last Name Method
+		 */
+		validateLastName(user.getLastName());
+
+		/*
+		 * Invoked Validate Email Method
+		 */
+		validateEmail(user.getEmail());
+
+		/*
+		 * Validate Phone Number Method
+		 */
+		validatePhoneNumber(user.getPhoneNumber());
 		
 		return true;
 		
@@ -196,9 +244,26 @@ public class UserValidator {
 		if (!isMatch) {
 			throw new InvalidUserException(UserValidatorErrors.INVALID_USER_PASSWORD);
 		}
-
+				
 		return true;
 
+	}
+	
+	public static String hashPassword(String password) throws InvalidUserException {
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			byte[] hashedBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+
+			// Convert the byte array to a hexadecimal string
+			StringBuilder sb = new StringBuilder();
+			for (byte b : hashedBytes) {
+				sb.append(String.format("%02x", b));
+			}
+
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			throw new InvalidUserException(e.getMessage());
+		}
 	}
 
 	public boolean validateId(int id) throws InvalidUserException {

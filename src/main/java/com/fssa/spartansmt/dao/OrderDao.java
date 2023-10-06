@@ -148,7 +148,7 @@ public class OrderDao {
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			final String query = "select * from orders where user_id = '" + userId + "'";
+			final String query = "select order_id, user_id, payment_option, total_price, ordered_date, shipping_address, country, state, zip_code from orders where user_id = '" + userId + "'";
 			try (Statement st = con.createStatement()) {
 
 				try (ResultSet rs = st.executeQuery(query)) {
@@ -203,7 +203,7 @@ public class OrderDao {
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			final String query = "select * from ordered_products where order_id = '" + orderId + "'";
+			final String query = "select ordered_product_id, order_id, product_id, quantity from ordered_products where order_id = '" + orderId + "'";
 			try (Statement st = con.createStatement()) {
 
 				try (ResultSet rs = st.executeQuery(query)) {
@@ -237,7 +237,7 @@ public class OrderDao {
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			final String query = "select * from orders where order_id = ?";
+			final String query = "select order_id, user_id, payment_option, total_price, ordered_date, shipping_address, country, state, zip_code from orders where order_id = ?";
 			try (PreparedStatement st = con.prepareStatement(query)) {
 				st.setInt(1, orderId);
 				try (ResultSet rs = st.executeQuery()) {

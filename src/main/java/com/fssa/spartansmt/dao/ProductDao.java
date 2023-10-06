@@ -152,7 +152,7 @@ public class ProductDao {
 			 *  Get All Store Details from Database. Declared Query as a String and Declared
 			 *  final keyword.
 			 */
-			final String query = "select * from products";
+			final String query = "select product_id, product_title, product_price, product_image, uploaded_date, store_id from products";
 
 			/*
 			 *  Connection Util Class CreateStatement Method Assigned by Statement Interface
@@ -230,7 +230,7 @@ public class ProductDao {
 					 *  Get Specific Store Product Details from Database. Declared Query as a String and Declared
 					 *  final keyword.
 					 */
-					final String query = "select * from products where store_id = '" + storeId + "'";
+					final String query = "select product_id, product_title, product_price, product_image, uploaded_date, store_id from products where store_id = '" + storeId + "'";
 
 					/*
 					 *  Connection Util Class CreateStatement Method Assigned by Statement Interface

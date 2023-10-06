@@ -1,5 +1,7 @@
 package com.fssa.spartansmt.service;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +15,7 @@ class TestUserService {
 	
 	static User user() {
 		User u = new User();
-		u.setUserId(1);
+		u.setUserId(2);
 		u.setEmail("mathan@gmail.com");
 		u.setFirstName("Mathankumar");
 		u.setLastName("GN");
@@ -33,7 +35,7 @@ class TestUserService {
 	
 	
 	@Test
-	void testValidAddUser() throws InvalidUserException, DAOException, ServiceException {
+	void testValidAddUser() throws InvalidUserException, DAOException, ServiceException, SQLException {
 		Assertions.assertTrue(userService().addUser(user()));
 	}
 	

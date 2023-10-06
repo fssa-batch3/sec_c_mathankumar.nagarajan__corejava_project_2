@@ -1,5 +1,6 @@
 package com.fssa.spartansmt.service;
 
+import java.sql.SQLException;
 
 import com.fssa.spartansmt.constants.UserConstants;
 import com.fssa.spartansmt.dao.UserDao;
@@ -22,7 +23,7 @@ public class UserService {
 	/*
 	 * Add User Service Method
 	 */
-	public boolean addUser(User user) throws InvalidUserException, DAOException, ServiceException {
+	public boolean addUser(User user) throws InvalidUserException, DAOException, ServiceException, SQLException {
 
 		/*
 		 * Passing the User Object in the User Validator Method. This Method Validate
@@ -32,7 +33,9 @@ public class UserService {
 
 		try {
 			if (new UserValidator().validate(user)) {
-				new UserDao().addUser(user);
+				if (new UserDao().checkEmployeeExists(user.getEmail())) {
+					new UserDao().addUser(user);
+				}
 			}
 		} catch (InvalidUserException | DAOException e) {
 			throw new ServiceException(e.getMessage());
@@ -51,9 +54,10 @@ public class UserService {
 		 * is valid It should send the User Object to the Update User Dao Layer.
 		 * Otherwise It will throw the Exception.
 		 */
-		if (new UserValidator().validate(user) && new UserValidator().validateId(user.getUserId()) && new UserValidator().validateAddressDetails(user)) {
+		if (new UserValidator().validateUpdateUserObj(user) && new UserValidator().validateId(user.getUserId())
+				&& new UserValidator().validateAddressDetails(user)) {
 			new UserDao().updateUser(user);
-		} 
+		}
 		return true;
 
 	}
@@ -84,32 +88,45 @@ public class UserService {
 
 	public boolean login(String email, String password) throws InvalidUserException, ServiceException {
 
-		try { 
+		try {
 			new UserValidator().validateEmail(email);
 			new UserValidator().validatePassword(password);
-		}catch(InvalidUserException e) {
+		} catch (InvalidUserException e) {
 			throw new ServiceException(e.getMessage());
 		}
 		return true;
-		
+
 	}
 
 	public int getUserIdUsingEmail(String email) throws ServiceException {
-		
+
 		int userId = UserConstants.INVALID_USER_ID;
-		
+
 		try {
-			
-			if(new UserValidator().validateEmail(email)) {
-				userId =  new UserDao().getUserIdUsingEmail(email);
+
+			if (new UserValidator().validateEmail(email)) {
+				userId = new UserDao().getUserIdUsingEmail(email);
 			}
-			
-		}catch(InvalidUserException | DAOException e) {
+
+		} catch (InvalidUserException | DAOException e) {
 			throw new ServiceException(e.getMessage());
 		}
 		return userId;
-		
-		
+
 	}
-	
+
+	public String convertHashPassword(String password) throws InvalidUserException, ServiceException {
+
+		String hashPassword = null;
+		try {
+			if (new UserValidator().validatePassword(password)) {
+				hashPassword = new UserValidator().hashPassword(password);
+			}
+		} catch (InvalidUserException e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+		return hashPassword;
+	}
+
 }

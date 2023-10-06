@@ -69,10 +69,12 @@ class TestUserValidator {
 		Assertions.assertTrue(userValidator().validatePhoneNumber(validUser().getPhoneNumber()));
 	}
 
+	
 	@Test
-	void testValidPassword() throws InvalidUserException {
+	void testValidPasswoed() throws InvalidUserException {
 		Assertions.assertTrue(userValidator().validatePassword(validUser().getPassword()));
 	}
+
 	
 	@Test
 	void testValidUserId() throws InvalidUserException {

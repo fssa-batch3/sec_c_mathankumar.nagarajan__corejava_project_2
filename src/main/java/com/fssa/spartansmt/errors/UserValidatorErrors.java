@@ -22,7 +22,7 @@ public class UserValidatorErrors {
 
 	public static final String INVALID_ADDRESS = "Address Can't be Null or Empty";
 	
-	public static final String INVALID_COUNTRY = "Country Can't be Null, Empty or It shour have only Alphabets";
+	public static final String INVALID_COUNTRY = "Country Can't be Null, Empty or It should have only Alphabets";
 	
 	public static final String INVALID_STATE = "State Can't be Null, Empty or It shour have only Alphabets";
 	

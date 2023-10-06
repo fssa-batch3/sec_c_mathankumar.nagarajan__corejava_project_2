@@ -55,6 +55,24 @@ public class UserDao {
 		return true;
 
 	}
+	
+	public boolean checkEmployeeExists(String email) throws DAOException, SQLException {
+		String query = "SELECT email FROM user WHERE email = ?";
+		boolean isValid;
+		try (Connection connection = ConnectionUtil.getConnection()) {
+			try (PreparedStatement pst = connection.prepareStatement(query)) {
+				pst.setString(1, email);
+				try (ResultSet rs = pst.executeQuery()) {
+					isValid = rs.next();
+				}
+			}
+		}
+		if(isValid) {
+			throw new DAOException("The User Already Exists");
+		}
+		return true;
+		
+	}
 
 	public boolean updateUser(User user) throws DAOException, InvalidUserException {
 
@@ -63,20 +81,19 @@ public class UserDao {
 		 */
 		try (Connection con = ConnectionUtil.getConnection()) {
 
-			final String query = "UPDATE user SET first_name = ?, last_name = ?, phone_number = ?, password = ?, address = ?, country = ?, state = ?, zipcode = ? WHERE user_id = ?;";
+			final String query = "UPDATE user SET first_name = ?, last_name = ?, phone_number = ?, address = ?, country = ?, state = ?, zipcode = ? WHERE user_id = ?;";
 			try (PreparedStatement pst = con.prepareStatement(query)) {
 
 				pst.setString(1, user.getFirstName());
 				pst.setString(2, user.getLastName());
 				pst.setLong(3, user.getPhoneNumber());
-				pst.setString(4, user.getPassword());
 				
-				pst.setString(5, user.getAddress());
-				pst.setString(6, user.getCountry());
-				pst.setString(7, user.getState());
-				pst.setInt(8, user.getZipCode());
+				pst.setString(4, user.getAddress());
+				pst.setString(5, user.getCountry());
+				pst.setString(6, user.getState());
+				pst.setInt(7, user.getZipCode());
 				
-				pst.setInt(9, user.getUserId());
+				pst.setInt(8, user.getUserId());
 				pst.executeUpdate();
 
 				Logger.info("User Details Updated Successfully");
@@ -102,7 +119,7 @@ public class UserDao {
 			 *  Get All Store Details from Database. Declared Query as a String and Declared
 			 *  final keyword.
 			 */
-			final String query = "select * from user";
+			final String query = "select user_id, first_name, last_name, email, password, phone_number, address, country, state, zipcode, role from user";
 
 			/*
 			 *  Connection Util Class CreateStatement Method Assigned by Statement Interface
@@ -145,7 +162,7 @@ public class UserDao {
 		
 		try(Connection con = ConnectionUtil.getConnection()){
 			
-			final String query = "select user_id, first_name, last_name, email, password, phone_number, address, country, state, zipcode from user where email = ?";
+			final String query = "select user_id, first_name, last_name, email, password, phone_number, address, country, state, zipcode, role from user where email = ?";
 			try(PreparedStatement ps = con.prepareStatement(query)){
 				
 				ps.setString(1, email);
@@ -165,6 +182,7 @@ public class UserDao {
 						user.setCountry(rs.getString("country"));
 						user.setState(rs.getString("state"));
 						user.setZipCode(rs.getInt("zipcode"));
+						user.setRole(rs.getString("role"));
 					}
 					
 				}
@@ -187,7 +205,7 @@ public class UserDao {
 			final String query = "select user_id from user where email = ?";
 			try(PreparedStatement pst = con.prepareStatement(query)){
 				
-				pst.setInt(1, userId);
+				pst.setString(1, email);
 				
 				try(ResultSet rs = pst.executeQuery()){
 					

@@ -35,37 +35,41 @@ class TestProductService {
 	public static List<Product> listOfProduct() {
 		List<Product> productList = new ArrayList<>();
 
-		productList.add(new Product("Mens Air Zoom Vomero 15 Running Shoe", 10009.53, "https://iili.io/HkeiZmb.webp", 2, LocalDate.now()));
-		productList.add(new Product("Men's Ultra Light Running <br>and Training Shoes", 4999, "https://iili.io/HkeiQku.webp", 2, LocalDate.now()));
-		productList.add(new Product("Men's Running Shoe<br>Bacca Bucci", 5230, "https://iili.io/HkeiDIj.webp", 2, LocalDate.now()));
-		productList.add(new Product("Mens Slip-on Premium Comfy-fit Sneaker", 4536.34, "https://iili.io/HkeiL7e.webp", 2, LocalDate.now()));
-		productList.add(new Product("Men's Wonder-13 Sports Running Shoes", 5484.92, "https://iili.io/Hkeis29.webp", 2, LocalDate.now()));
-		productList.add(new Product("Mens Ultimate Ease Range Walking Shoe", 3299, "https://iili.io/Hkeibhx.webp", 2, LocalDate.now()));
+		productList.add(new Product("Mens Air Zoom Vomero 15 Running Shoe", 10009.53, "https://iili.io/HkeiZmb.webp", 1,
+				LocalDate.now()));
+		productList.add(new Product("Men's Ultra Light Running <br>and Training Shoes", 4999,
+				"https://iili.io/HkeiQku.webp", 1, LocalDate.now()));
+		productList.add(new Product("Men's Running Shoe<br>Bacca Bucci", 5230, "https://iili.io/HkeiDIj.webp", 1,
+				LocalDate.now()));
+		productList.add(new Product("Mens Slip-on Premium Comfy-fit Sneaker", 4536.34, "https://iili.io/HkeiL7e.webp",
+				1, LocalDate.now()));
+		productList.add(new Product("Men's Wonder-13 Sports Running Shoes", 5484.92, "https://iili.io/Hkeis29.webp", 1,
+				LocalDate.now()));
+		productList.add(new Product("Mens Ultimate Ease Range Walking Shoe", 3299, "https://iili.io/Hkeibhx.webp", 1,
+				LocalDate.now()));
 
-		productList.add(new Product("Apple iPhone 14 Pro", 120000, "https://iili.io/HyZvUFt.webp", 3, LocalDate.now()));
-		productList.add(new Product("Apple iPhone 14", 100009, "https://iili.io/HyZv69s.webp", 3, LocalDate.now()));
-		productList.add(new Product("Apple iPhone 13 Pro", 87000, "https://iili.io/HyZvPAG.webp", 3, LocalDate.now()));
-		productList.add(new Product("Apple iPhone 12", 23000, "https://iili.io/HyZviNf.webp", 3, LocalDate.now()));
-		productList.add(new Product("Apple iPhone 13", 76000, "https://iili.io/HyZvst4.webp", 3, LocalDate.now()));
+		productList.add(new Product("Apple iPhone 14 Pro", 120000, "https://iili.io/HyZvUFt.webp", 2, LocalDate.now()));
+		productList.add(new Product("Apple iPhone 14", 100009, "https://iili.io/HyZv69s.webp", 2, LocalDate.now()));
+		productList.add(new Product("Apple iPhone 13 Pro", 87000, "https://iili.io/HyZvPAG.webp", 2, LocalDate.now()));
+		productList.add(new Product("Apple iPhone 12", 23000, "https://iili.io/HyZviNf.webp", 2, LocalDate.now()));
+		productList.add(new Product("Apple iPhone 13", 76000, "https://iili.io/HyZvst4.webp", 2, LocalDate.now()));
 
 		return productList;
 	}
-	
+
+//	@Test
+//	void addProductForDemo() throws InvalidProductDetailsException, DAOException {
+//
+//		TestProductService tps = new TestProductService();
+//		List<Product> productList = listOfProduct();
+//		for (Product product : productList) {
+//			Assertions.assertTrue(ProductService.addProduct(product));
+//		}
+
+//	}
+
 	@Test
-	void addProductForDemo() throws InvalidProductDetailsException, DAOException {
-
-		TestProductService tps = new TestProductService();
-		List<Product> productList = listOfProduct();
-		for(Product product : productList) {
-			Assertions.assertTrue(ProductService.addProduct(product));
-		}
-		
-		
-
-	}
-
-	@Test 
-	void testValidAddProduct()  {
+	void testValidAddProduct() {
 
 		TestProductService tps = new TestProductService();
 		try {
@@ -112,15 +116,14 @@ class TestProductService {
 			fail("Get Product Detials Methos Is Failded");
 		}
 	}
-	
-	
+
 	@Test
 	void testValidGetProductById() throws InvalidProductDetailsException, DAOException {
 		ProductService productSer = new ProductService();
 		try {
 			Product product = productSer.getProductById(demoProduct().getProductId());
 			Logger.info(product);
-		}catch(ServiceException e) {
+		} catch (ServiceException e) {
 			fail("Get Product By Id Method Is Failded");
 		}
 	}
