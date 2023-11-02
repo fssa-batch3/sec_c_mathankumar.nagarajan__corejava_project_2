@@ -9,7 +9,6 @@ import java.sql.Statement;
 import com.fssa.spartansmt.constants.UserConstants;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
-import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.User;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
@@ -44,7 +43,6 @@ public class UserDao {
 				pst.setString(6, UserConstants.USER);
 				pst.executeUpdate(); 
 
-				Logger.info("User Details Successfully Added To The Database");
 				
 			}
 
@@ -96,7 +94,6 @@ public class UserDao {
 				pst.setInt(8, user.getUserId());
 				pst.executeUpdate();
 
-				Logger.info("User Details Updated Successfully");
 				
 			}
 
@@ -134,13 +131,10 @@ public class UserDao {
 					/*
 					 *  Get All Store Details using ResultSet and Printing Store Details One by One.
 					 */
-					while (rs.next()) {
+					if (rs.next()) {
 
-						Logger.info("User ID: " + rs.getInt("user_id") + ", First Name: "
-								+ rs.getString("first_name") + ", Last Name: " + rs.getString("last_name")
-								+ ", Phonenumber: " + rs.getString("phone_number") + ", Email: " + rs.getString("email")
-								+ ", Password: " + rs.getString("password"));
-
+						return true;
+						
 					}
 
 				}
@@ -190,7 +184,7 @@ public class UserDao {
 			}
 			
 		}catch(SQLException e) {
-			throw new DAOException("Error for fetching User Details");
+			throw new DAOException("Invalid Email Address");
 		}
 		return user;
 		

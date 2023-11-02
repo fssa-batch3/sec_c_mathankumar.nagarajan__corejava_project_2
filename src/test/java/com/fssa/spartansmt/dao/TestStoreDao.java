@@ -18,7 +18,7 @@ class TestStoreDao {
 	Store storeDetails() {
 		
 		Store s = new Store();
-		s.setId(14);
+		s.setId(30);
 		s.setName("Vero Moda");
 		s.setCategory("Fashion Dress For Women");
 		s.setStoreLogoLink("https://iili.io/HWXeyru.png");
@@ -47,9 +47,6 @@ class TestStoreDao {
 		try {
 			List<Store> storeList = StoreDao.getAllStoreDetails();
 			
-			for(Store ele : storeList) {
-				Logger.info(ele);
-			}
 		}catch(DAOException ex) {
 			fail("Get All Store Details Methos Is Failded");
 		}

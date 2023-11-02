@@ -18,15 +18,14 @@ public class ConnectionUtil {
 		String username;
 		String password;
 
-		url = System.getenv("DATABASE_HOST1"); 
-		username = System.getenv("DATABASE_USERNAME1");
-		password = System.getenv("DATABASE_PASSWORD1");
+		url = System.getenv("DATABASE_HOST"); 
+		username = System.getenv("DATABASE_USERNAME");
+		password = System.getenv("DATABASE_PASSWORD");
 
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, username, password);
-			Logger.info("Connected");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Unable to connect to the database");
@@ -34,8 +33,4 @@ public class ConnectionUtil {
 		return con;
 	}
 
-	public static void main(String[] args) {
-		ConnectionUtil.getConnection();
-	}
-	
 }

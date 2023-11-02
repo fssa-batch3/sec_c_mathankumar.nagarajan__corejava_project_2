@@ -12,7 +12,6 @@ import java.util.List;
 
 import com.fssa.spartansmt.constants.OrderConstants;
 import com.fssa.spartansmt.exception.DAOException;
-import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Order;
 import com.fssa.spartansmt.model.OrderedProduct;
 import com.fssa.spartansmt.util.ConnectionUtil;
@@ -75,8 +74,6 @@ public class OrderDao {
 				 */
 				orderId = getOrderId(order.getUserId());
 
-				// Print Statement
-				Logger.info("Successfully Placed Order");
 
 			}
 
@@ -108,7 +105,6 @@ public class OrderDao {
 				pst.setInt(2, orderedProduct.getProductId());
 				pst.setInt(3, orderedProduct.getQuantity());
 				pst.executeUpdate();
-				Logger.info("Successfully Placed Product");
 
 			}
 

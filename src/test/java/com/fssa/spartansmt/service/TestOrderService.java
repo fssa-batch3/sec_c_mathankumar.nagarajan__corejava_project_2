@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidOrderDetailsException;
 import com.fssa.spartansmt.exception.InvalidUserException;
-import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Order;
 import com.fssa.spartansmt.model.OrderedProduct;
 
@@ -50,9 +49,6 @@ public class TestOrderService {
 		
 		OrderService os = new OrderService();
 		List<Order> orderList = os.getAllOrdersUsingUserId(4);
-		for(Order e : orderList) {
-			Logger.info(e);
-		}
 		
 		
 	}
@@ -63,7 +59,6 @@ public class TestOrderService {
 		
 		OrderService os = new OrderService();
 		Order order = os.getOrderUsingOrderId(1);
-		Logger.info(order);
 		
 	}
 

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidUserException;
 import com.fssa.spartansmt.exception.ServiceException;
-import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.User;
 
 class TestUserService {
@@ -52,7 +51,6 @@ class TestUserService {
 	@Test
 	void testValidGetUserByEmail() throws DAOException, InvalidUserException, ServiceException {
 		User user = (userService().getUserByEmail(user().getEmail()));
-		Logger.info(user);
 	}
 
 	

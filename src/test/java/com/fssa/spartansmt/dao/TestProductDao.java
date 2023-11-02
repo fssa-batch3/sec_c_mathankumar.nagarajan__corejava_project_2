@@ -18,11 +18,11 @@ class TestProductDao {
 	static Product validProduct() {
 
 		Product p1 = new Product();
-		p1.setProductId(15);
+		p1.setProductId(30);
 		p1.setProductTitle("IQOO Z6 44W (Lumina Blue, 128 GB) (8 GB RAM)");
 		p1.setProductPrice(29999);
 		p1.setProductImage("https://iili.io/HUMtFun.webp");
-		p1.setStoreId(2);
+		p1.setStoreId(7);
 		p1.setUploadedDate(LocalDate.now());
 
 		return p1; 
@@ -60,9 +60,7 @@ class TestProductDao {
 		try {
 			ProductDao pd = new ProductDao();
 			List<Product> productList = pd.getAllProductDetails();
-			for(Product ele : productList) {
-				Logger.info(ele);
-			}
+			
 		}catch(DAOException ex) {
 			fail("Get All Product Details Method Is Failded");
 		}
@@ -77,9 +75,6 @@ class TestProductDao {
 		try {
 			ProductDao pd = new ProductDao();
 			List<Product> productList = pd.getAllProductByStoreId(validProduct().getStoreId());
-			for(Product ele : productList) {
-				Logger.info(ele);
-			}
 		}catch(DAOException ex) {
 			fail("Get All Products Details By Store Id Method Is Failded");
 		}

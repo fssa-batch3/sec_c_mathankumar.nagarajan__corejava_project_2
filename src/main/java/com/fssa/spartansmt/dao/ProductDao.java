@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fssa.spartansmt.exception.DAOException;
-import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Product;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
@@ -51,7 +50,6 @@ public class ProductDao {
 				pst.setDate(5, Date.valueOf(product.getUploadedDate()));
 				pst.executeUpdate();
 
-				Logger.info("Product Added Successfully To The Database");
 				 
 			}
 
@@ -86,8 +84,6 @@ public class ProductDao {
 				pst.setDate(4, Date.valueOf(LocalDate.now()));
 				pst.executeUpdate();
 
-				// Print Statement
-				Logger.info("Product Updated Successfully");
 				
 			}
 
@@ -129,10 +125,6 @@ public class ProductDao {
 			throw new DAOException("Error For Deleting Product Details");
 		}
 
-		/*
-		 *  Print Statement
-		 */
-		Logger.info("Deleted Successfully");
 		
 		return true;
 

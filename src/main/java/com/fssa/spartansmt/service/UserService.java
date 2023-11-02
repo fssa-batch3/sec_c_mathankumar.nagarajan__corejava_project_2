@@ -23,7 +23,7 @@ public class UserService {
 	/*
 	 * Add User Service Method
 	 */
-	public boolean addUser(User user) throws InvalidUserException, DAOException, ServiceException, SQLException {
+	public boolean addUser(User user) throws ServiceException, SQLException {
 
 		/*
 		 * Passing the User Object in the User Validator Method. This Method Validate
@@ -72,7 +72,7 @@ public class UserService {
 		return true;
 	}
 
-	public User getUserByEmail(String email) throws DAOException, InvalidUserException, ServiceException {
+	public User getUserByEmail(String email) throws ServiceException {
 
 		User user = null;
 		try {
@@ -86,7 +86,7 @@ public class UserService {
 
 	}
 
-	public boolean login(String email, String password) throws InvalidUserException, ServiceException {
+	public boolean login(String email, String password) throws ServiceException {
 
 		try {
 			new UserValidator().validateEmail(email);

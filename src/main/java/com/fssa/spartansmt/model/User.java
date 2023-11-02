@@ -142,7 +142,7 @@ public class User {
 	
 	
 	
-	// this constructor used to update the user object
+	// this constructor is used to update the user object
 	public User(String firstName, String lastName, String email, long phoneNumber, String address, String country,
 			String state, int zipCode, int userId) {
 		super();

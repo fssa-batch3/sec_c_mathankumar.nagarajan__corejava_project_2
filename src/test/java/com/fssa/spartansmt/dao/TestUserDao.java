@@ -14,7 +14,7 @@ class TestUserDao {
 	static User user() {
 		
 		User ud = new User();
-		ud.setUserId(5);
+		ud.setUserId(30);
 		ud.setFirstName("Mathan");
 		ud.setLastName("GN");
 		ud.setPhoneNumber(8940169934l);

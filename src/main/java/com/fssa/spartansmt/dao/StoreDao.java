@@ -12,7 +12,6 @@ import com.fssa.spartansmt.constants.StoreConstants;
 import com.fssa.spartansmt.errors.StoreValidatorErrors;
 import com.fssa.spartansmt.exception.DAOException;
 import com.fssa.spartansmt.exception.InvalidStoreDetailsException;
-import com.fssa.spartansmt.logger.Logger;
 import com.fssa.spartansmt.model.Store;
 import com.fssa.spartansmt.util.ConnectionUtil;
 
@@ -60,15 +59,10 @@ public class StoreDao {
 
 		} catch (SQLException e) {
 			
-			System.out.println(e.getMessage());
 			
 			throw new DAOException("Error for Adding Store Details");
 		}
 
-		/*
-		 *  Print Statement
-		 */
-		Logger.info("Added Successfully");
 		
 		return true;
  
@@ -107,10 +101,6 @@ public class StoreDao {
 			throw new DAOException("Error for Updating Store Details");
 		}
 
-		/*
-		 *  Print Statement
-		 */
-		Logger.info("Updated Successfully");
 
 		return true;
 
@@ -152,10 +142,6 @@ public class StoreDao {
 			throw new DAOException("Error For Deleting Store Details");
 		}
 		
-		/*
-		 *  Print Statement
-		 */
-		Logger.info("Deleted Successfully");
 		
 		return true;
 		
